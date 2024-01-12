@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://dji1rniuusnmy"]
+
+[ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_1osxu"]
+[ext_resource type="Texture2D" uid="uid://bt1ywpvnxswet" path="res://assets/textures/branding/logo.png" id="2_ff1yt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yh38l"]
+font_size = 55
+
+[sub_resource type="InputEventAction" id="InputEventAction_bc05y"]
+action = &"ui_accept"
+
+[sub_resource type="Shortcut" id="Shortcut_fasub"]
+events = [SubResource("InputEventAction_bc05y")]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1osxu")
+
+[node name="LogoContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -88.5
+offset_right = 197.0
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="LogoContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Byte of Terrror"
+label_settings = SubResource("LabelSettings_yh38l")
+
+[node name="Subtitle" type="Label" parent="LogoContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ein Spiel von Yannik Ain und Merle ? für das"
+
+[node name="TextureRect" type="TextureRect" parent="LogoContainer"]
+custom_minimum_size = Vector2(180, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_ff1yt")
+expand_mode = 1
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -93.0
+offset_right = 53.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+shortcut = SubResource("Shortcut_fasub")
+shortcut_in_tooltip = false
+text = "Spiel starten"
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]

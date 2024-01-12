@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://gg5ph541e4p3"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_8d33x"]
+[ext_resource type="Texture2D" uid="uid://2xwafdhiha6x" path="res://assets/textures/world/flashlight_effect.png" id="1_rxdpg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2qx4s"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_8d33x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2qx4s")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, 0)
+light_energy = 3.0
+light_indirect_energy = 4.0
+light_volumetric_fog_energy = 4.0
+light_projector = ExtResource("1_rxdpg")
+shadow_enabled = true
+spot_range = 43.1073
+spot_angle = 52.0559
