@@ -21,5 +21,5 @@ light_indirect_energy = 4.0
 light_volumetric_fog_energy = 4.0
 light_projector = ExtResource("1_rxdpg")
 shadow_enabled = true
-spot_range = 43.1073
-spot_angle = 52.0559
+spot_range = 48.0
+spot_angle = 40.9175
