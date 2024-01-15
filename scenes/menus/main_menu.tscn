@@ -44,7 +44,7 @@ label_settings = SubResource("LabelSettings_yh38l")
 [node name="Subtitle" type="Label" parent="LogoContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "ein Spiel von Yannik Ain und Merle ? für das"
+text = "ein Spiel von Yannik Ain und Merle Jacob für das"
 
 [node name="TextureRect" type="TextureRect" parent="LogoContainer"]
 custom_minimum_size = Vector2(180, 70)

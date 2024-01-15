@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckad8stc13n83"]
+[gd_scene load_steps=7 format=3 uid="uid://ckad8stc13n83"]
 
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="1_2585i"]
+[ext_resource type="ArrayMesh" uid="uid://ddwkhfly2xyyt" path="res://models/interior.obj" id="1_lphcl"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_t51pb"]
-size = Vector2(10, 10)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voc6l"]
+cull_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibyjr"]
+cull_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_067df"]
 size = Vector3(10, 0.01, 10)
@@ -15,8 +19,10 @@ size = Vector3(10, 0.01, 10)
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("PlaneMesh_t51pb")
-skeleton = NodePath("../..")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+mesh = ExtResource("1_lphcl")
+surface_material_override/0 = SubResource("StandardMaterial3D_voc6l")
+surface_material_override/1 = SubResource("StandardMaterial3D_ibyjr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_067df")
