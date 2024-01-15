@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="1_2585i"]
 [ext_resource type="ArrayMesh" uid="uid://ddwkhfly2xyyt" path="res://models/interior.obj" id="1_lphcl"]
+[ext_resource type="PackedScene" uid="uid://b8bvidqu7tmfs" path="res://scenes/interactables/task_terminal.tscn" id="3_30m3x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voc6l"]
 cull_mode = 2
@@ -10,9 +11,7 @@ cull_mode = 2
 cull_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_067df"]
-size = Vector3(10, 0.01, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_8sg6w"]
+size = Vector3(16, 0.01, 18)
 
 [node name="Debug" type="Node3D"]
 
@@ -28,12 +27,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_ibyjr")
 shape = SubResource("BoxShape3D_067df")
 
 [node name="Player" parent="." instance=ExtResource("1_2585i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14051, 0.511925, -2.28447)
-mesh = SubResource("BoxMesh_8sg6w")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14051, 0.511925, 2.70502)
-mesh = SubResource("BoxMesh_8sg6w")
+[node name="StaticBody3D" parent="." instance=ExtResource("3_30m3x")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, 0)
