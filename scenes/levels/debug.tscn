@@ -1,33 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckad8stc13n83"]
+[gd_scene load_steps=4 format=3 uid="uid://ckad8stc13n83"]
 
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="1_2585i"]
-[ext_resource type="ArrayMesh" uid="uid://ddwkhfly2xyyt" path="res://models/interior.obj" id="1_lphcl"]
+[ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://models/interior.obj" id="1_lphcl"]
 [ext_resource type="PackedScene" uid="uid://b8bvidqu7tmfs" path="res://scenes/interactables/task_terminal.tscn" id="3_30m3x"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voc6l"]
-cull_mode = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibyjr"]
-cull_mode = 2
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_067df"]
-size = Vector3(16, 0.01, 18)
 
 [node name="Debug" type="Node3D"]
 
-[node name="Ground" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+[node name="interior" parent="." instance=ExtResource("1_lphcl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-mesh = ExtResource("1_lphcl")
-surface_material_override/0 = SubResource("StandardMaterial3D_voc6l")
-surface_material_override/1 = SubResource("StandardMaterial3D_ibyjr")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_067df")
 
 [node name="Player" parent="." instance=ExtResource("1_2585i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
 
 [node name="StaticBody3D" parent="." instance=ExtResource("3_30m3x")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0.027395, 0)

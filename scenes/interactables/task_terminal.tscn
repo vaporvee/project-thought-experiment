@@ -31,7 +31,7 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_7alnb")
 size = Vector2(1, 1)
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[node name="TaskTerminal" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sh78v")
@@ -48,6 +48,7 @@ transform = Transform3D(-4.37114e-08, 0.891007, 0.453991, 0, 0.453991, -0.891007
 mesh = SubResource("PlaneMesh_hekp8")
 
 [node name="SubViewport" type="SubViewport" parent="ScreenMesh"]
+size_2d_override = Vector2i(512, 512)
 render_target_update_mode = 4
 
 [node name="DebugScreen" parent="ScreenMesh/SubViewport" instance=ExtResource("1_q1qkj")]
