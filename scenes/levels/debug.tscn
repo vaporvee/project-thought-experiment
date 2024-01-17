@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckad8stc13n83"]
+[gd_scene load_steps=5 format=3 uid="uid://ckad8stc13n83"]
 
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="1_2585i"]
 [ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://models/interior.obj" id="1_lphcl"]
 [ext_resource type="PackedScene" uid="uid://b8bvidqu7tmfs" path="res://scenes/interactables/task_terminal.tscn" id="3_30m3x"]
+[ext_resource type="PackedScene" uid="uid://dqy8bqf1chm8c" path="res://scenes/interactables/button_stand.tscn" id="4_cruoa"]
 
 [node name="Debug" type="Node3D"]
 
@@ -21,3 +22,6 @@ transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866016, 0.29244, -0.40558, 0.5, 0.5, -0.707107, -0.00399622, -0.815156, -0.579228, 0, 0, 0)
 light_energy = 0.5
+
+[node name="ButtonStand" parent="." instance=ExtResource("4_cruoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7, 0)
