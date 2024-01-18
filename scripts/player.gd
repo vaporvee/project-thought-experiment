@@ -8,13 +8,17 @@ const JUMP_VELOCITY = 4.5
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camera: Camera3D = $Camera3D
+@onready var gun_cam: Camera3D = $GravityGun/SubViewportContainer/SubViewport/Node3D/Camera3D
 
 var camera_senitivity: float = 0.5
 
 func _ready() -> void:
 	capture()
+	camera.make_current()
 
 func _physics_process(delta: float) -> void:
+	gun_cam.transform = camera.transform
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
@@ -36,7 +40,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * camera_senitivity * 0.0025)
 		camera.rotate_x(-event.relative.y * camera_senitivity * 0.0015)
-		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -60, 80)
+		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -30, 80)
 	if event.is_action_pressed("pause"):
 		capture(false)
 	if event.is_action_pressed("mouse_capture"):

@@ -1,0 +1,117 @@
+[gd_scene load_steps=15 format=3 uid="uid://cl6gw3huejnrl"]
+
+[ext_resource type="ArrayMesh" uid="uid://cxw30fmp15jsd" path="res://models/gun.obj" id="1_803cf"]
+[ext_resource type="Environment" uid="uid://drn5fwa4uhv4m" path="res://resources/environment.tres" id="1_vtn44"]
+[ext_resource type="Material" uid="uid://b6r8e4302xg1d" path="res://assets/materials/dark_metal.material" id="2_qrl87"]
+[ext_resource type="Shader" path="res://shaders/pbr_glass.gdshader" id="3_aeppb"]
+[ext_resource type="Material" uid="uid://djwaye0a3cmds" path="res://assets/materials/wood.material" id="4_expk1"]
+[ext_resource type="Material" uid="uid://wi5k6axixuwr" path="res://assets/materials/metal.material" id="5_algr0"]
+[ext_resource type="Material" uid="uid://dy6hjdu4t4wan" path="res://assets/materials/orange_glow.material" id="6_ocwsh"]
+[ext_resource type="Material" uid="uid://c8bic1or51fbf" path="res://assets/materials/old_plastic.material" id="7_c1s4a"]
+[ext_resource type="Texture2D" uid="uid://b4en3dw3q324p" path="res://assets/textures/circle.png" id="8_al3c7"]
+
+[sub_resource type="World3D" id="World3D_6qira"]
+environment = ExtResource("1_vtn44")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twwch"]
+render_priority = 0
+shader = ExtResource("3_aeppb")
+shader_parameter/albedo = Color(1, 1, 1, 0.0156863)
+shader_parameter/roughness = 0.301
+shader_parameter/normal_strength = 16.0
+shader_parameter/edge_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yttr4"]
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 0.2
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(3, -7.5, 0)
+scale_min = 0.01
+scale_max = 0.07
+collision_mode = 2
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y24ld"]
+transparency = 2
+alpha_scissor_threshold = 0.9
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("8_al3c7")
+emission_enabled = true
+emission = Color(0.784314, 0.396078, 0, 1)
+emission_energy_multiplier = 16.0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_wtlns"]
+material = SubResource("StandardMaterial3D_y24ld")
+
+[node name="GravityGun" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -324.0
+grow_horizontal = 2
+grow_vertical = 0
+stretch_shrink = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+world_3d = SubResource("World3D_6qira")
+transparent_bg = true
+handle_input_locally = false
+gui_embed_subwindows = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(0.00445237, 0.182181, 0.983255, 0.0240231, 0.982961, -0.182236, -0.999701, 0.0244322, -4.29794e-08, 0.895815, -0.569743, -1.63173)
+mesh = ExtResource("1_803cf")
+surface_material_override/0 = ExtResource("2_qrl87")
+surface_material_override/1 = SubResource("ShaderMaterial_twwch")
+surface_material_override/2 = ExtResource("4_expk1")
+surface_material_override/3 = ExtResource("5_algr0")
+surface_material_override/4 = ExtResource("6_ocwsh")
+surface_material_override/5 = ExtResource("7_c1s4a")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20308, -0.000130415, 0.165362)
+emitting = false
+lifetime = 5.0
+randomness = 0.2
+visibility_aabb = AABB(-0.894568, -0.448322, -0.513538, 1.77742, 0.896643, 1.02708)
+process_material = SubResource("ParticleProcessMaterial_yttr4")
+draw_pass_1 = SubResource("QuadMesh_wtlns")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.173204, 0.0331628, -0.182098)
+lifetime = 5.0
+randomness = 0.5
+visibility_aabb = AABB(-0.894568, -0.448322, -0.513538, 1.77742, 0.896643, 1.02708)
+process_material = SubResource("ParticleProcessMaterial_yttr4")
+draw_pass_1 = SubResource("QuadMesh_wtlns")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132698, 0.304665, 0.0594321)
+lifetime = 5.0
+randomness = 0.5
+visibility_aabb = AABB(-0.894568, -0.448322, -0.513538, 1.77742, 0.896643, 1.02708)
+process_material = SubResource("ParticleProcessMaterial_yttr4")
+draw_pass_1 = SubResource("QuadMesh_wtlns")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SubViewportContainer/SubViewport/Node3D/MeshInstance3D"]
+transform = Transform3D(0.999923, -0.012392, 0.000616441, 0.0123854, 0.999875, 0.00980631, -0.000737865, -0.00979792, 0.999952, 0.358337, 0.108517, -0.0012207)
+size = Vector3(1.17664, 0.301201, 0.299805)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(0.991671, 0, -0.128796, 0, 1, 0, 0.128796, 0, 0.991671, 0, 0, 0)
