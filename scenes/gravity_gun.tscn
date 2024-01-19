@@ -67,14 +67,23 @@ transparent_bg = true
 handle_input_locally = false
 gui_embed_subwindows = true
 size = Vector2i(1152, 648)
+size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+directional_shadow_blend_splits = true
+sky_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D/Camera3D"]
 transform = Transform3D(0.00445237, 0.182181, 0.983255, 0.0240231, 0.982961, -0.182236, -0.999701, 0.0244322, -4.29794e-08, 0.895815, -0.569743, -1.63173)
 mesh = ExtResource("1_803cf")
+skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_qrl87")
 surface_material_override/1 = SubResource("ShaderMaterial_twwch")
 surface_material_override/2 = ExtResource("4_expk1")
@@ -82,7 +91,7 @@ surface_material_override/3 = ExtResource("5_algr0")
 surface_material_override/4 = ExtResource("6_ocwsh")
 surface_material_override/5 = ExtResource("7_c1s4a")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/MeshInstance3D"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/Camera3D/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20308, -0.000130415, 0.165362)
 emitting = false
 lifetime = 5.0
@@ -91,7 +100,7 @@ visibility_aabb = AABB(-0.894568, -0.448322, -0.513538, 1.77742, 0.896643, 1.027
 process_material = SubResource("ParticleProcessMaterial_yttr4")
 draw_pass_1 = SubResource("QuadMesh_wtlns")
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/MeshInstance3D"]
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/Camera3D/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.173204, 0.0331628, -0.182098)
 lifetime = 5.0
 randomness = 0.5
@@ -99,7 +108,7 @@ visibility_aabb = AABB(-0.894568, -0.448322, -0.513538, 1.77742, 0.896643, 1.027
 process_material = SubResource("ParticleProcessMaterial_yttr4")
 draw_pass_1 = SubResource("QuadMesh_wtlns")
 
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/MeshInstance3D"]
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/Camera3D/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132698, 0.304665, 0.0594321)
 lifetime = 5.0
 randomness = 0.5
@@ -107,11 +116,6 @@ visibility_aabb = AABB(-0.894568, -0.448322, -0.513538, 1.77742, 0.896643, 1.027
 process_material = SubResource("ParticleProcessMaterial_yttr4")
 draw_pass_1 = SubResource("QuadMesh_wtlns")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SubViewportContainer/SubViewport/Node3D/MeshInstance3D"]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SubViewportContainer/SubViewport/Node3D/Camera3D/MeshInstance3D"]
 transform = Transform3D(0.999923, -0.012392, 0.000616441, 0.0123854, 0.999875, 0.00980631, -0.000737865, -0.00979792, 0.999952, 0.358337, 0.108517, -0.0012207)
 size = Vector3(1.17664, 0.301201, 0.299805)
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
-transform = Transform3D(0.991671, 0, -0.128796, 0, 1, 0, 0.128796, 0, 0.991671, 0, 0, 0)
