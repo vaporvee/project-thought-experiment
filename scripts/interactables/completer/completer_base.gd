@@ -1,16 +1,16 @@
+@tool
 extends Node
 class_name Completer
 
 @export var one_shot: bool
 
-signal completed
-signal uncompleted
+signal triggered
 
-var toggle: bool = true
+var completed: bool
 
 func toggle_complete():
-	toggle = !toggle
-	if one_shot || toggle:
-		completed.emit()
+	if one_shot:
+		completed = true
 	else:
-		uncompleted.emit()
+		completed = !completed
+	triggered.emit()

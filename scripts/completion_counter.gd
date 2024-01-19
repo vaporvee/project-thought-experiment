@@ -1,19 +1,28 @@
 extends Node
 
 signal unlock
+signal lock
 
 @export var nodes_needed: Array[Completer]
-var uncompleted: int
+
+var unlocked: bool
 
 func _ready():
-	uncompleted = nodes_needed.size()
 	for node in nodes_needed:
-		node.completed.connect(complete)
+		node.triggered.connect(complete)
 
 func complete():
-	uncompleted -= 1
-	if uncompleted == 0:
-		unlock.emit()
+	if areAllNodesUnlocked():
+		if !unlocked:
+			unlock.emit()
+		unlocked = true
+	else:
+		if unlocked:
+			lock.emit()
+		unlocked = false
 
-func uncomplete():
-	pass #TODO
+func areAllNodesUnlocked():
+	for node in nodes_needed:
+		if !node.completed:
+			return false
+	return true

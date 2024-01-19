@@ -4,4 +4,7 @@ extends Completer
 
 func _on_interaction_area_interacted():
 	animation_player.play("press")
-	super.toggle_complete()
+	toggle_complete()
+	if one_shot:
+		await animation_player.animation_finished
+		$Button.hide()

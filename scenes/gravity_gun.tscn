@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cl6gw3huejnrl"]
+[gd_scene load_steps=21 format=3 uid="uid://cl6gw3huejnrl"]
 
+[ext_resource type="Script" path="res://scripts/gravity_gun.gd" id="1_0upyy"]
 [ext_resource type="ArrayMesh" uid="uid://cxw30fmp15jsd" path="res://models/gun.obj" id="1_803cf"]
 [ext_resource type="Environment" uid="uid://drn5fwa4uhv4m" path="res://resources/environment.tres" id="1_vtn44"]
 [ext_resource type="Material" uid="uid://b6r8e4302xg1d" path="res://assets/materials/dark_metal.material" id="2_qrl87"]
@@ -10,8 +11,15 @@
 [ext_resource type="Material" uid="uid://c8bic1or51fbf" path="res://assets/materials/old_plastic.material" id="7_c1s4a"]
 [ext_resource type="Texture2D" uid="uid://b4en3dw3q324p" path="res://assets/textures/circle.png" id="8_al3c7"]
 
-[sub_resource type="World3D" id="World3D_6qira"]
+[sub_resource type="World3D" id="World3D_wp4pn"]
 environment = ExtResource("1_vtn44")
+
+[sub_resource type="GDScript" id="GDScript_sr7lp"]
+script/source = "extends SubViewport
+
+func _ready() -> void:
+	msaa_3d = ProjectSettings.get_setting(\"rendering/anti_aliasing/quality/msaa_3d\",0)
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twwch"]
 render_priority = 0
@@ -33,7 +41,7 @@ scale_max = 0.07
 collision_mode = 2
 collision_use_scale = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y24ld"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnipw"]
 transparency = 2
 alpha_scissor_threshold = 0.9
 alpha_antialiasing_mode = 0
@@ -45,30 +53,58 @@ billboard_mode = 1
 billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_wtlns"]
-material = SubResource("StandardMaterial3D_y24ld")
+material = SubResource("StandardMaterial3D_rnipw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ccgj"]
+direction = Vector3(3, 0, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+
+[sub_resource type="Curve" id="Curve_xucvk"]
+_data = [Vector2(0.0245902, 0), 0.0, 1.4, 0, 0, Vector2(0.172131, 0), 1.65004, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_endjk"]
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+emission_energy_multiplier = 16.0
+backlight = Color(1, 1, 1, 1)
+billboard_keep_scale = true
+point_size = 12.7
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_fwaab"]
+material = SubResource("StandardMaterial3D_endjk")
+size = 12.0
+section_length = 0.3
+section_segments = 2
+curve = SubResource("Curve_xucvk")
 
 [node name="GravityGun" type="CanvasLayer"]
 follow_viewport_enabled = true
+script = ExtResource("1_0upyy")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -324.0
 grow_horizontal = 2
-grow_vertical = 0
-stretch_shrink = 2
-metadata/_edit_use_anchors_ = true
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-world_3d = SubResource("World3D_6qira")
+own_world_3d = true
+world_3d = SubResource("World3D_wp4pn")
 transparent_bg = true
 handle_input_locally = false
-gui_embed_subwindows = true
+scaling_3d_scale = 2.0
+sdf_scale = 0
 size = Vector2i(1152, 648)
 size_2d_override_stretch = true
 render_target_update_mode = 4
+script = SubResource("GDScript_sr7lp")
 
 [node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
@@ -119,3 +155,14 @@ draw_pass_1 = SubResource("QuadMesh_wtlns")
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SubViewportContainer/SubViewport/Node3D/Camera3D/MeshInstance3D"]
 transform = Transform3D(0.999923, -0.012392, 0.000616441, 0.0123854, 0.999875, 0.00980631, -0.000737865, -0.00979792, 0.999952, 0.358337, 0.108517, -0.0012207)
 size = Vector3(1.17664, 0.301201, 0.299805)
+
+[node name="GravityParticles" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Node3D/Camera3D/MeshInstance3D"]
+transform = Transform3D(1, -2.79397e-08, 8.70349e-09, 1.9744e-07, 1, 5.83791e-08, -7.93013e-09, -5.67382e-07, 1, 1, 0.1, 0)
+visible = false
+amount = 20
+lifetime = 0.1
+visibility_aabb = AABB(0.0726342, 0.335538, 0.399176, 0.593013, 0.887273, 1.34056)
+trail_enabled = true
+trail_lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_5ccgj")
+draw_pass_1 = SubResource("RibbonTrailMesh_fwaab")

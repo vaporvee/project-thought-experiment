@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://models/interior.obj" id="1_lphcl"]
 [ext_resource type="PackedScene" uid="uid://b8bvidqu7tmfs" path="res://scenes/objects/interactables/task_terminal.tscn" id="3_30m3x"]
 [ext_resource type="PackedScene" uid="uid://dqy8bqf1chm8c" path="res://scenes/objects/interactables/button_stand.tscn" id="4_cruoa"]
-[ext_resource type="PackedScene" uid="uid://6njtmij7sikl" path="res://scenes/completion_counter.tscn" id="5_lo1l3"]
+[ext_resource type="PackedScene" uid="uid://22blfybi6n4q" path="res://scenes/completion_counter.tscn" id="5_lo1l3"]
 [ext_resource type="PackedScene" uid="uid://cy0x2nliyw8gw" path="res://scenes/door.tscn" id="6_853p2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_780x3"]
@@ -39,6 +39,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0
 
 [node name="ButtonStand" parent="." instance=ExtResource("4_cruoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7, 0)
+one_shot = true
 
 [node name="CompletionCounter" parent="." node_paths=PackedStringArray("nodes_needed") instance=ExtResource("5_lo1l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0617981, 3.05379, 6.24098)
@@ -50,6 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 1.425, 6.64)
 [node name="ButtonStand2" parent="." instance=ExtResource("4_cruoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.7, 4)
 
+[connection signal="lock" from="CompletionCounter" to="Door" method="close"]
 [connection signal="unlock" from="CompletionCounter" to="Door" method="open"]
 
 [editable path="interior"]

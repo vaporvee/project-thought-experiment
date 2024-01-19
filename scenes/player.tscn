@@ -39,5 +39,3 @@ mesh = SubResource("QuadMesh_dicpk")
 script = ExtResource("2_jg7te")
 
 [node name="GravityGun" parent="." instance=ExtResource("2_ahuce")]
-
-[editable path="GravityGun"]
