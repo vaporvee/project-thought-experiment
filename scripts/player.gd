@@ -15,6 +15,7 @@ var camera_senitivity: float = 0.5
 func _ready() -> void:
 	capture()
 	camera.make_current()
+	$Camera3D/DDOF.show() # Würde den spieler im editor unsichtbar machen
 
 func _physics_process(delta: float) -> void:
 	gun_cam.transform = camera.transform

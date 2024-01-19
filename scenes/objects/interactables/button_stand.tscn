@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dqy8bqf1chm8c"]
 
 [ext_resource type="PackedScene" uid="uid://dm8l36ephydnl" path="res://scenes/interaction_area.tscn" id="1_0okd0"]
-[ext_resource type="Script" path="res://scripts/interactables/button_stand.gd" id="1_uieqm"]
+[ext_resource type="Script" path="res://scripts/interactables/completer/button_stand.gd" id="1_gkcm2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jpuiw"]
 height = 1.4
@@ -25,6 +25,21 @@ top_radius = 0.2
 bottom_radius = 0.2
 height = 0.1
 
+[sub_resource type="Animation" id="Animation_y5bt0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.750413, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_stg1c"]
 resource_name = "press"
 length = 0.2
@@ -41,21 +56,6 @@ tracks/0/keys = {
 "values": [Vector3(0, 0.750413, 0), Vector3(0, 0.67, 0), Vector3(0, 0.75, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_y5bt0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.750413, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_um1vs"]
 _data = {
 "RESET": SubResource("Animation_y5bt0"),
@@ -63,7 +63,7 @@ _data = {
 }
 
 [node name="ButtonStand" type="StaticBody3D"]
-script = ExtResource("1_uieqm")
+script = ExtResource("1_gkcm2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_jpuiw")
