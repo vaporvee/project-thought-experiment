@@ -14,3 +14,6 @@ func complete():
 	uncompleted -= 1
 	if uncompleted == 0:
 		unlock.emit()
+
+func uncomplete():
+	pass #TODO

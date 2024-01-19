@@ -4,4 +4,4 @@ extends Completer
 
 func _on_interaction_area_interacted():
 	animation_player.play("press")
-	completed.emit()
+	super.toggle_complete()
