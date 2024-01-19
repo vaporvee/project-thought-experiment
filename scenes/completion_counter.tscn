@@ -1,11 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://22blfybi6n4q"]
+[gd_scene load_steps=5 format=3 uid="uid://22blfybi6n4q"]
 
 [ext_resource type="Script" path="res://scripts/completion_counter.gd" id="1_40xge"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w280a"]
 size = Vector3(1, 0.2, 0.1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_b3hjf"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="MultiMesh" id="MultiMesh_lx3df"]
+transform_format = 1
+instance_count = 2
+mesh = SubResource("BoxMesh_b3hjf")
+buffer = PackedFloat32Array(1.001, 0, 0, -0.075992, 0, 0, -1.001, -0.0484443, 0, 1.001, 0, -0.16236, 0, 0, 1.001, -0.295454, 0, -1.001, 0, -0.1, 1.001, 0, 0, -0.1905)
+
 [node name="CompletionCounter" type="MeshInstance3D"]
 editor_description = "The amount of signals it needs connected and fired to emit a signal"
 mesh = SubResource("BoxMesh_w280a")
 script = ExtResource("1_40xge")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27379, 0.0888374, 0.219394)
+multimesh = SubResource("MultiMesh_lx3df")

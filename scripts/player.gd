@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * camera_senitivity * 0.0025)
 		camera.rotate_x(-event.relative.y * camera_senitivity * 0.0015)
-		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -30, 80)
+		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -40, 80)
 	if event.is_action_pressed("pause"):
 		capture(false)
 	if event.is_action_pressed("mouse_capture"):
