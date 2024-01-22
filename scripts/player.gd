@@ -12,6 +12,9 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var camera_senitivity: float = 0.5
 
+@onready var gravity_gun_goal: Node3D = $Camera3D/SpringArm3D/GravityGunGoal
+@onready var raycast: RayCast3D = $Camera3D/RayCast3D
+
 func _ready() -> void:
 	capture()
 	camera.make_current()
@@ -36,6 +39,13 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED * delta * 50)
 	
 	move_and_slide()
+	
+	# Pushing other objects
+	for col_idx in get_slide_collision_count():
+		var col := get_slide_collision(col_idx)
+		if col.get_collider() is RigidBody3D:
+			col.get_collider().apply_central_impulse(-col.get_normal() * 0.3)
+			col.get_collider().apply_impulse(-col.get_normal() * 0.01, col.get_position())
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

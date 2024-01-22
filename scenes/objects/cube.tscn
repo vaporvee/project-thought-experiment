@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://ced2w03t8er5k"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_x5eli"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_flqji"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_evnha"]
 
-[node name="Cube" type="RigidBody3D"]
+[node name="Cube" type="RigidBody3D" groups=["pushables"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_x5eli")
+shape = SubResource("BoxShape3D_flqji")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_evnha")

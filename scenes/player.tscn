@@ -38,4 +38,15 @@ visible = false
 mesh = SubResource("QuadMesh_dicpk")
 script = ExtResource("2_jg7te")
 
+[node name="SpringArm3D" type="SpringArm3D" parent="Camera3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+spring_length = 10.0
+
+[node name="GravityGunGoal" type="Node3D" parent="Camera3D/SpringArm3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.69771e-07, 0, 9.94902)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -10)
+debug_shape_custom_color = Color(0, 0, 0, 0)
+
 [node name="GravityGun" parent="." instance=ExtResource("2_ahuce")]

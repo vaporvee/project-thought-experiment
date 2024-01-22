@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="1_2585i"]
 [ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_lphcl"]
 [ext_resource type="Texture2D" uid="uid://bu7e43m8dswwk" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare_col.png" id="2_irc8l"]
-[ext_resource type="PackedScene" uid="uid://b8bvidqu7tmfs" path="res://scenes/objects/interactables/task_terminal.tscn" id="3_30m3x"]
 [ext_resource type="Texture2D" uid="uid://dkggxcnlqd2rb" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare_ao.png" id="3_465hc"]
 [ext_resource type="PackedScene" uid="uid://dqy8bqf1chm8c" path="res://scenes/objects/interactables/button_stand.tscn" id="4_cruoa"]
 [ext_resource type="Texture2D" uid="uid://bsklw2r406fc7" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare_metalness.png" id="4_sn3wt"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bs0qseslb0ilu" path="res://assets/textures/material/tiles_white/tiles_white_ambientocclusion.png" id="8_wcubh"]
 [ext_resource type="Texture2D" uid="uid://cpw4myruauqs6" path="res://assets/textures/material/tiles_white/tiles_white_normal.png" id="9_xs8gx"]
 [ext_resource type="Texture2D" uid="uid://uy7vdufb7mhc" path="res://assets/textures/material/tiles_white/tiles_white_roughness.png" id="10_mli04"]
+[ext_resource type="PackedScene" uid="uid://ced2w03t8er5k" path="res://scenes/objects/cube.tscn" id="15_h1ivu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkjw0"]
 albedo_texture = ExtResource("2_irc8l")
@@ -26,11 +26,14 @@ normal_texture = ExtResource("5_pffg3")
 ao_enabled = true
 ao_texture = ExtResource("3_465hc")
 uv1_scale = Vector3(35, 35, 35)
+uv1_triplanar_sharpness = 0.148651
+uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cl8ik"]
 albedo_texture = ExtResource("7_qai4q")
 roughness_texture = ExtResource("10_mli04")
 normal_enabled = true
+normal_scale = 1.5
 normal_texture = ExtResource("9_xs8gx")
 ao_enabled = true
 ao_texture = ExtResource("8_wcubh")
@@ -52,11 +55,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dkjw0")
 [node name="Cube" parent="interior" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_cl8ik")
 
+[node name="StaticBody3D" parent="interior/Cube" index="0"]
+collision_priority = 2000.0
+
 [node name="Player" parent="." instance=ExtResource("1_2585i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
-
-[node name="TaskTerminal" parent="." instance=ExtResource("3_30m3x")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0.027395, 0)
 
 [node name="ButtonStand" parent="." instance=ExtResource("4_cruoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7, 0)
@@ -64,13 +67,20 @@ one_shot = true
 
 [node name="CompletionCounter" parent="." node_paths=PackedStringArray("nodes_needed") instance=ExtResource("5_lo1l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0617981, 3.05379, 6.24098)
-nodes_needed = [NodePath("../ButtonStand"), NodePath("../ButtonStand2")]
+nodes_needed = [NodePath("../ButtonStand"), NodePath("../ButtonStand2"), NodePath("../ButtonStand3")]
 
 [node name="Door" parent="." instance=ExtResource("6_853p2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 1.425, 6.64)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 1.58488, 6.64)
 
 [node name="ButtonStand2" parent="." instance=ExtResource("4_cruoa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.7, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03802, 0.7, 6)
+
+[node name="ButtonStand3" parent="." instance=ExtResource("4_cruoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.7, 2)
+
+[node name="Cube" parent="." instance=ExtResource("15_h1ivu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_priority = 2.0
 
 [connection signal="lock" from="CompletionCounter" to="Door" method="close"]
 [connection signal="unlock" from="CompletionCounter" to="Door" method="open"]

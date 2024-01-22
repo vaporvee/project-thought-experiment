@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dji1rniuusnmy"]
+[gd_scene load_steps=5 format=3 uid="uid://dji1rniuusnmy"]
 
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_1osxu"]
-[ext_resource type="Texture2D" uid="uid://bt1ywpvnxswet" path="res://assets/textures/branding/logo.png" id="2_ff1yt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yh38l"]
 font_size = 55
@@ -40,18 +39,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Byte of Terrror"
 label_settings = SubResource("LabelSettings_yh38l")
-
-[node name="Subtitle" type="Label" parent="LogoContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "ein Spiel von Yannik Ain und Merle Jacob für das"
-
-[node name="TextureRect" type="TextureRect" parent="LogoContainer"]
-custom_minimum_size = Vector2(180, 70)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("2_ff1yt")
-expand_mode = 1
 
 [node name="StartGame" type="Button" parent="."]
 layout_mode = 1
