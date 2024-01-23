@@ -1,0 +1,158 @@
+[gd_scene load_steps=30 format=3 uid="uid://ckad8stc13n83"]
+
+[ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_xs30l"]
+[ext_resource type="Texture2D" uid="uid://bu7e43m8dswwk" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare_col.png" id="2_afued"]
+[ext_resource type="Texture2D" uid="uid://dkggxcnlqd2rb" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare_ao.png" id="3_4uy3l"]
+[ext_resource type="Texture2D" uid="uid://bsklw2r406fc7" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare_metalness.png" id="4_vi1ta"]
+[ext_resource type="Texture2D" uid="uid://cet7gsgfgw1m2" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare_nrm.png" id="5_sjo1j"]
+[ext_resource type="Texture2D" uid="uid://48js50w57wk4" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare_roughness.png" id="6_os40o"]
+[ext_resource type="Texture2D" uid="uid://c72iofq6gmfaa" path="res://assets/textures/material/tiles_white/tiles_white_color.png" id="7_gqmq7"]
+[ext_resource type="Texture2D" uid="uid://bs0qseslb0ilu" path="res://assets/textures/material/tiles_white/tiles_white_ambientocclusion.png" id="8_54t4l"]
+[ext_resource type="Texture2D" uid="uid://cpw4myruauqs6" path="res://assets/textures/material/tiles_white/tiles_white_normal.png" id="9_5dnm4"]
+[ext_resource type="Texture2D" uid="uid://uy7vdufb7mhc" path="res://assets/textures/material/tiles_white/tiles_white_roughness.png" id="10_208rc"]
+[ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="11_lls6p"]
+[ext_resource type="PackedScene" uid="uid://22blfybi6n4q" path="res://scenes/objects/completion_counter.tscn" id="12_vn8j0"]
+[ext_resource type="PackedScene" uid="uid://cy0x2nliyw8gw" path="res://scenes/objects/door.tscn" id="13_fhdru"]
+[ext_resource type="PackedScene" uid="uid://dqy8bqf1chm8c" path="res://scenes/objects/interactables/button_stand.tscn" id="14_mpdbg"]
+[ext_resource type="PackedScene" uid="uid://ced2w03t8er5k" path="res://scenes/objects/cube.tscn" id="15_40os8"]
+[ext_resource type="PackedScene" uid="uid://ce8nemacxi67m" path="res://scenes/audio_subtitle_system.tscn" id="16_2wrmg"]
+[ext_resource type="AudioStream" uid="uid://d3741vrmaeci5" path="res://assets/audio/voicelines/anouncer_intro_01.ogg" id="17_1a448"]
+[ext_resource type="Script" path="res://scripts/voiceline_resource.gd" id="18_jxpoe"]
+[ext_resource type="AudioStream" uid="uid://bi1rf1hi2fm2r" path="res://assets/audio/voicelines/anouncer_intro_02.ogg" id="19_2roq0"]
+[ext_resource type="AudioStream" uid="uid://bji3bx3umohnw" path="res://assets/audio/voicelines/anouncer_intro_03.ogg" id="20_dqpxk"]
+[ext_resource type="AudioStream" uid="uid://ddpvabd43s3p4" path="res://assets/audio/voicelines/anouncer_intro_04.ogg" id="21_n11nj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkjw0"]
+albedo_texture = ExtResource("2_afued")
+metallic = 1.0
+metallic_texture = ExtResource("4_vi1ta")
+roughness_texture = ExtResource("6_os40o")
+normal_enabled = true
+normal_texture = ExtResource("5_sjo1j")
+ao_enabled = true
+ao_texture = ExtResource("3_4uy3l")
+uv1_scale = Vector3(35, 35, 35)
+uv1_triplanar_sharpness = 0.148651
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cl8ik"]
+albedo_texture = ExtResource("7_gqmq7")
+roughness_texture = ExtResource("10_208rc")
+normal_enabled = true
+normal_scale = 1.5
+normal_texture = ExtResource("9_5dnm4")
+ao_enabled = true
+ao_texture = ExtResource("8_54t4l")
+uv1_scale = Vector3(8, 30, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wyr1d"]
+size = Vector3(4, 0.2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lygjd"]
+size = Vector3(4, 0.2, 5)
+
+[sub_resource type="Resource" id="Resource_u3j5u"]
+script = ExtResource("18_jxpoe")
+audio = ExtResource("17_1a448")
+text = "Hallo!"
+
+[sub_resource type="Resource" id="Resource_3g4yn"]
+script = ExtResource("18_jxpoe")
+audio = ExtResource("19_2roq0")
+text = "Und willkommen zur Gehirn Test Simulation „Project Thought Experiment“."
+
+[sub_resource type="Resource" id="Resource_6wqks"]
+script = ExtResource("18_jxpoe")
+audio = ExtResource("20_dqpxk")
+text = "Falls Sie sich nicht erinnern: Sie haben uns, der „Neura-Förderkooperation“, Ihren gesamten Körper gespendet. "
+
+[sub_resource type="Resource" id="Resource_im7qv"]
+script = ExtResource("18_jxpoe")
+audio = ExtResource("21_n11nj")
+text = "Jetzt werden Sie einige Tests durchführen, um sicherzustellen, dass Sie [rainbow][wave]keinen Hirnschaden[/wave][/rainbow] haben oder ein  [rainbow][wave]kompletter Idiot[/wave][/rainbow] sind, da es jetzt vollständig in unser digitales Simulationssystem integriert ist."
+
+[node name="LVL1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.707107, 0, 0.5, 0.5, 0.707107, -0.5, -0.5, 0.707107, 0, 0, 0)
+directional_shadow_blend_splits = true
+sky_mode = 1
+
+[node name="interior" parent="." instance=ExtResource("1_xs30l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Hallway" parent="interior" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dkjw0")
+
+[node name="StaticBody3D" parent="interior/Hallway" index="0"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Cube" parent="interior" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cl8ik")
+
+[node name="StaticBody3D" parent="interior/Cube" index="0"]
+collision_layer = 7
+collision_mask = 7
+collision_priority = 2000.0
+
+[node name="Player" parent="." instance=ExtResource("11_lls6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
+
+[node name="CompletionCounter" parent="." node_paths=PackedStringArray("nodes_needed") instance=ExtResource("12_vn8j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0617981, 3.05379, 6.24098)
+nodes_needed = [NodePath("../ButtonStand2"), NodePath("../ButtonStand3")]
+
+[node name="Door" parent="." instance=ExtResource("13_fhdru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 1.58488, 6.64)
+
+[node name="ButtonStand2" parent="." instance=ExtResource("14_mpdbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03802, 0.7, 4)
+
+[node name="ButtonStand3" parent="." instance=ExtResource("14_mpdbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4.7, 0.0433838)
+
+[node name="Cube" parent="." instance=ExtResource("15_40os8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
+collision_priority = 2.0
+
+[node name="Cube2" parent="." instance=ExtResource("15_40os8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.51, 0)
+collision_priority = 2.0
+
+[node name="Cube3" parent="." instance=ExtResource("15_40os8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.51, -2)
+collision_priority = 2.0
+
+[node name="Cube4" parent="." instance=ExtResource("15_40os8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.51, -3.93867)
+collision_priority = 2.0
+
+[node name="Cube5" parent="." instance=ExtResource("15_40os8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, -2)
+collision_priority = 2.0
+
+[node name="Cube6" parent="." instance=ExtResource("15_40os8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96977, 0.51, -2)
+collision_priority = 2.0
+
+[node name="DebugPlane" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9, 3.9, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DebugPlane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("BoxMesh_wyr1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DebugPlane"]
+shape = SubResource("BoxShape3D_lygjd")
+
+[node name="AudioSubtitleSystem" parent="." instance=ExtResource("16_2wrmg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.27434, 3)
+voice_lines = Array[ExtResource("18_jxpoe")]([SubResource("Resource_u3j5u"), SubResource("Resource_3g4yn"), SubResource("Resource_6wqks"), SubResource("Resource_im7qv")])
+
+[connection signal="lock" from="CompletionCounter" to="Door" method="close"]
+[connection signal="unlock" from="CompletionCounter" to="Door" method="open"]
+
+[editable path="interior"]
+[editable path="AudioSubtitleSystem"]

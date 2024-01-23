@@ -10,18 +10,22 @@ config_version=5
 
 [application]
 
-config/name="Bitmaze Adventure"
-run/main_scene="res://scenes/levels/debug.tscn"
+config/name="Project Thought Experiment"
+run/main_scene="res://scenes/levels/lvl_1.tscn"
+config/auto_accept_quit=false
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
-config/auto_accept_quit.release=false
-boot_splash/show_image.editor=true
+
+[autoload]
+
+WindowManager="*res://scripts/autoloads/window_manager.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
+window/size/mode.release=4
 
 [editor_plugins]
 
@@ -39,6 +43,10 @@ folder_colors={
 "res://scripts/": "green",
 "res://shaders/": "orange"
 }
+
+[gui]
+
+theme/custom="res://resources/main_theme.tres"
 
 [input]
 

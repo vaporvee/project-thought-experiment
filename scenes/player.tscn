@@ -13,7 +13,7 @@ render_priority = 0
 shader = ExtResource("2_rpqdy")
 shader_parameter/ray_position = null
 shader_parameter/blur_strength = 3
-shader_parameter/blur_falloff = 7.0
+shader_parameter/blur_falloff = 2.0
 shader_parameter/blur_near = 20.0
 shader_parameter/blur_far = 200.0
 
@@ -52,6 +52,9 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.113
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -10)
 debug_shape_custom_color = Color(0, 0, 0, 0)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="GravityGunLayer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ahuce")]
 player = NodePath("..")

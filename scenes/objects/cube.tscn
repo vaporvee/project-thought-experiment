@@ -11,7 +11,6 @@ absorbent = true
 [node name="Cube" type="RigidBody3D" groups=["pushables"]]
 mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_b2i4c")
-lock_rotation = true
 continuous_cd = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

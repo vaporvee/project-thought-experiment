@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvb7rkyyyllkc"]
+
+[ext_resource type="Script" path="res://scripts/close_game_confirmation.gd" id="1_qqjao"]
+
+[node name="CloseGameConfirmation" type="ConfirmationDialog"]
+title = "Beenden"
+initial_position = 2
+size = Vector2i(267, 132)
+ok_button_text = "Zum Hauptmenü"
+dialog_text = "Möchtest du das Spiel beenden
+und zurrück zum Hauptmenü 
+oder zurrück zum Desktop?"
+dialog_close_on_escape = false
+cancel_button_text = "Zum Desktop"
+script = ExtResource("1_qqjao")
+
+[connection signal="canceled" from="." to="." method="_on_canceled"]
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]

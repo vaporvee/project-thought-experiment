@@ -24,6 +24,7 @@ func _physics_process(_delta):
 			collider.global_position = player.goal.global_position
 		elif player.raycast.get_collider() is RigidBody3D:
 			collider = player.raycast.get_collider()
+			collider.lock_rotation = true
 		if Input.is_action_pressed("gravity_push") || Input.is_action_just_pressed("gravity_push"):
 			player.spring_arm.spring_length += .5
 		if Input.is_action_pressed("gravity_pull") || Input.is_action_just_pressed("gravity_pull"):
@@ -31,5 +32,7 @@ func _physics_process(_delta):
 		player.spring_arm.spring_length = clamp(player.spring_arm.spring_length,2,spring_length_cap)
 	else:
 		gravity_particles.visible = false
+		if collider:
+			collider.lock_rotation = false
 		collider = null
 
