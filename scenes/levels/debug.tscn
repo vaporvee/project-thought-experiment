@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ckad8stc13n83"]
+[gd_scene load_steps=20 format=3 uid="uid://ckad8stc13n83"]
 
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="1_2585i"]
 [ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_lphcl"]
@@ -39,7 +39,14 @@ ao_enabled = true
 ao_texture = ExtResource("8_wcubh")
 uv1_scale = Vector3(8, 30, 8)
 
+[sub_resource type="BoxMesh" id="BoxMesh_wyr1d"]
+size = Vector3(4, 0.2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lygjd"]
+size = Vector3(4, 0.2, 5)
+
 [node name="Debug" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.707107, 0, 0.5, 0.5, 0.707107, -0.5, -0.5, 0.707107, 0, 0, 0)
@@ -52,35 +59,66 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 [node name="Hallway" parent="interior" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_dkjw0")
 
+[node name="StaticBody3D" parent="interior/Hallway" index="0"]
+collision_layer = 7
+collision_mask = 7
+
 [node name="Cube" parent="interior" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_cl8ik")
 
 [node name="StaticBody3D" parent="interior/Cube" index="0"]
+collision_layer = 7
+collision_mask = 7
 collision_priority = 2000.0
 
 [node name="Player" parent="." instance=ExtResource("1_2585i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
 
-[node name="ButtonStand" parent="." instance=ExtResource("4_cruoa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7, 0)
-one_shot = true
-
 [node name="CompletionCounter" parent="." node_paths=PackedStringArray("nodes_needed") instance=ExtResource("5_lo1l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0617981, 3.05379, 6.24098)
-nodes_needed = [NodePath("../ButtonStand"), NodePath("../ButtonStand2"), NodePath("../ButtonStand3")]
+nodes_needed = [NodePath("../ButtonStand2"), NodePath("../ButtonStand3")]
 
 [node name="Door" parent="." instance=ExtResource("6_853p2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 1.58488, 6.64)
 
 [node name="ButtonStand2" parent="." instance=ExtResource("4_cruoa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03802, 0.7, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03802, 0.7, 4)
 
 [node name="ButtonStand3" parent="." instance=ExtResource("4_cruoa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.7, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4.7, 1)
 
 [node name="Cube" parent="." instance=ExtResource("15_h1ivu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_priority = 2.0
+
+[node name="Cube2" parent="." instance=ExtResource("15_h1ivu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+collision_priority = 2.0
+
+[node name="Cube3" parent="." instance=ExtResource("15_h1ivu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
+collision_priority = 2.0
+
+[node name="Cube4" parent="." instance=ExtResource("15_h1ivu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
+collision_priority = 2.0
+
+[node name="Cube5" parent="." instance=ExtResource("15_h1ivu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
+collision_priority = 2.0
+
+[node name="Cube6" parent="." instance=ExtResource("15_h1ivu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -2)
+collision_priority = 2.0
+
+[node name="DebugPlane" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9, 3.9, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DebugPlane"]
+mesh = SubResource("BoxMesh_wyr1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DebugPlane"]
+shape = SubResource("BoxShape3D_lygjd")
 
 [connection signal="lock" from="CompletionCounter" to="Door" method="close"]
 [connection signal="unlock" from="CompletionCounter" to="Door" method="open"]

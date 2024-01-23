@@ -63,6 +63,8 @@ _data = {
 }
 
 [node name="ButtonStand" type="StaticBody3D"]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_gkcm2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

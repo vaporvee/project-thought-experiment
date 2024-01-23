@@ -8,12 +8,12 @@ const JUMP_VELOCITY = 4.5
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camera: Camera3D = $Camera3D
-@onready var gun_cam: Camera3D = $GravityGun/SubViewportContainer/SubViewport/Node3D/Camera3D
-
+@onready var gun_cam: Camera3D = $GravityGunLayer/SubViewportContainer/SubViewport/Node3D/Camera3D
 var camera_senitivity: float = 0.5
 
-@onready var gravity_gun_goal: Node3D = $Camera3D/SpringArm3D/GravityGunGoal
 @onready var raycast: RayCast3D = $Camera3D/RayCast3D
+@onready var goal: Node3D = $Camera3D/SpringArm3D/GravityGunGoal
+@onready var spring_arm: SpringArm3D = $Camera3D/SpringArm3D
 
 func _ready() -> void:
 	capture()

@@ -101,7 +101,7 @@ section_length = 0.3
 section_segments = 2
 curve = SubResource("Curve_xucvk")
 
-[node name="GravityGun" type="CanvasLayer"]
+[node name="GravityGunLayer" type="CanvasLayer"]
 follow_viewport_enabled = true
 script = ExtResource("1_0upyy")
 
@@ -186,3 +186,5 @@ trail_enabled = true
 trail_lifetime = 0.8
 process_material = SubResource("ParticleProcessMaterial_5ccgj")
 draw_pass_1 = SubResource("RibbonTrailMesh_fwaab")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
