@@ -31,13 +31,19 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Cube": {
-"decomposition/advanced": true,
-"generate/physics": true,
-"physics/shape_type": 2
-},
 "PATH:Hallway": {
 "generate/physics": true,
+"physics/layer": 7,
+"physics/mask": 7,
+"physics/shape_type": 2
+},
+"PATH:Room": {
+"decomposition/mode": 1,
+"decomposition/normalize_mesh": true,
+"decomposition/precision": 10,
+"generate/physics": true,
+"physics/layer": 7,
+"physics/mask": 7,
 "physics/shape_type": 2
 }
 }

@@ -19,6 +19,7 @@ func _ready() -> void:
 	capture()
 	camera.make_current()
 	$Camera3D/DDOF.show() # Würde den spieler im editor unsichtbar machen
+	WindowManager.pause_menu.continued.connect(capture)
 
 func _physics_process(delta: float) -> void:
 	gun_cam.transform = camera.transform
@@ -51,15 +52,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * camera_senitivity * 0.0025)
 		camera.rotate_x(-event.relative.y * camera_senitivity * 0.0015)
-		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -80, 80)
+		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -50, 80)
 	if event.is_action_pressed("pause"):
-		capture(false)
-	if event.is_action_pressed("mouse_capture"):
-		capture()
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 		capture(false)
 
 func capture(value: bool = true) -> void:

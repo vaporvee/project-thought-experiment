@@ -6,7 +6,8 @@
 [ext_resource type="Shader" path="res://shaders/ddof.gdshader" id="2_rpqdy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2qx4s"]
-height = 1.9
+radius = 0.4
+height = 1.7
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52bjo"]
 render_priority = 0
@@ -44,7 +45,7 @@ script = ExtResource("2_jg7te")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 collision_mask = 2
 shape = SubResource("SeparationRayShape3D_fvhib")
-spring_length = 10.0
+spring_length = 2.5
 
 [node name="GravityGunGoal" type="Node3D" parent="Camera3D/SpringArm3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.1134e-07, 0, 9.28065)
@@ -54,7 +55,7 @@ target_position = Vector3(0, 0, -10)
 debug_shape_custom_color = Color(0, 0, 0, 0)
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="GravityGunLayer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ahuce")]
 player = NodePath("..")

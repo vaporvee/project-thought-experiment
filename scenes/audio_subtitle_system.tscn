@@ -39,7 +39,6 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_eoq1n")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer"]
-self_modulate = Color(1, 1, 1, 0.47451)
 layout_mode = 2
 bbcode_enabled = true
 scroll_active = false

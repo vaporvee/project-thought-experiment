@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_1osxu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yh38l"]
-font_size = 55
+font_size = 40
 
 [sub_resource type="InputEventAction" id="InputEventAction_bc05y"]
 action = &"ui_accept"
@@ -37,8 +37,10 @@ grow_vertical = 2
 [node name="Title" type="Label" parent="LogoContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Byte of Terrror"
+text = "Project
+Thought Experiment"
 label_settings = SubResource("LabelSettings_yh38l")
+horizontal_alignment = 1
 
 [node name="StartGame" type="Button" parent="."]
 layout_mode = 1

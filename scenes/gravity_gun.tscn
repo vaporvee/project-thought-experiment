@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://cl6gw3huejnrl"]
+[gd_scene load_steps=24 format=3 uid="uid://cl6gw3huejnrl"]
 
 [ext_resource type="Script" path="res://scripts/gravity_gun.gd" id="1_0upyy"]
 [ext_resource type="ArrayMesh" uid="uid://cxw30fmp15jsd" path="res://assets/models/gun.obj" id="1_803cf"]
 [ext_resource type="Environment" uid="uid://drn5fwa4uhv4m" path="res://resources/environment.tres" id="1_vtn44"]
 [ext_resource type="Material" uid="uid://b6r8e4302xg1d" path="res://assets/materials/dark_metal.material" id="2_qrl87"]
 [ext_resource type="Shader" path="res://shaders/pbr_glass.gdshader" id="3_aeppb"]
+[ext_resource type="Texture2D" uid="uid://bjx2i53wtjair" path="res://assets/textures/crosshair.png" id="7_4s8bm"]
 [ext_resource type="Texture2D" uid="uid://b4en3dw3q324p" path="res://assets/textures/circle.png" id="8_al3c7"]
 
 [sub_resource type="World3D" id="World3D_wp4pn"]
@@ -101,6 +102,18 @@ section_length = 0.3
 section_segments = 2
 curve = SubResource("Curve_xucvk")
 
+[sub_resource type="Shader" id="Shader_3q2t2"]
+code = "shader_type canvas_item;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
+
+void fragment() {
+	COLOR.rgb = 1.0 - textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
+	COLOR.a = texture(TEXTURE , UV).a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bkc3"]
+shader = SubResource("Shader_3q2t2")
+
 [node name="GravityGunLayer" type="CanvasLayer"]
 follow_viewport_enabled = true
 script = ExtResource("1_0upyy")
@@ -186,5 +199,22 @@ trail_enabled = true
 trail_lifetime = 0.8
 process_material = SubResource("ParticleProcessMaterial_5ccgj")
 draw_pass_1 = SubResource("RibbonTrailMesh_fwaab")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_1bkc3")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_4s8bm")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

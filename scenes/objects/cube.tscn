@@ -1,20 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://ced2w03t8er5k"]
+[gd_scene load_steps=6 format=3 uid="uid://ced2w03t8er5k"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b2i4c"]
+[ext_resource type="ArrayMesh" uid="uid://cfftio4fgenlo" path="res://assets/models/cube.obj" id="1_xnjii"]
+[ext_resource type="Material" uid="uid://ltq25pr37xjg" path="res://assets/textures/material/crate/crate.material" id="2_26qic"]
+[ext_resource type="Material" uid="uid://ctadhqfpd0j5u" path="res://assets/textures/material/metal/metal.material" id="2_oyd3r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
 rough = true
+bounce = 0.1
 absorbent = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_flqji"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_evnha"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
+size = Vector3(1.1, 1.1, 1.1)
 
 [node name="Cube" type="RigidBody3D" groups=["pushables"]]
+collision_priority = 2.0
 mass = 1.5
-physics_material_override = SubResource("PhysicsMaterial_b2i4c")
+physics_material_override = SubResource("PhysicsMaterial_rff84")
 continuous_cd = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_flqji")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_evnha")
+mesh = ExtResource("1_xnjii")
+surface_material_override/0 = ExtResource("2_oyd3r")
+surface_material_override/1 = ExtResource("2_26qic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bsmvc")
