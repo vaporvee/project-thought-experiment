@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ryumwinqbqgr"]
+
+[ext_resource type="ArrayMesh" uid="uid://5jmm7tn60qa4" path="res://assets/models/screen.obj" id="1_561hv"]
+[ext_resource type="Material" uid="uid://c8bic1or51fbf" path="res://assets/materials/old_plastic.material" id="2_r7j4a"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
+rough = true
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbaul"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
+size = Vector3(0.894531, 1.15163, 1.1)
+
+[node name="ComputerScreen" type="RigidBody3D" groups=["pushables"]]
+collision_priority = 2.0
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_rff84")
+continuous_cd = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_561hv")
+surface_material_override/0 = ExtResource("2_r7j4a")
+surface_material_override/1 = SubResource("StandardMaterial3D_vbaul")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00273436, -0.0842743, 0)
+shape = SubResource("BoxShape3D_bsmvc")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://n2fxmsp27rfs"]
+
+[ext_resource type="ArrayMesh" uid="uid://dqymak6wgq3bb" path="res://assets/models/wall_holder.obj" id="1_lp6sm"]
+[ext_resource type="Material" uid="uid://cxjgare3kcbtl" path="res://assets/materials/dark_metal2.material" id="2_l0awx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
+rough = true
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m4ear"]
+size = Vector3(0.1, 0.1, 0.276709)
+
+[node name="Desk" type="StaticBody3D"]
+collision_priority = 2.0
+physics_material_override = SubResource("PhysicsMaterial_rff84")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+mesh = ExtResource("1_lp6sm")
+surface_material_override/0 = ExtResource("2_l0awx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.132642)
+shape = SubResource("BoxShape3D_m4ear")

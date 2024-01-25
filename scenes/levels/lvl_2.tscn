@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c17x7kmjmqdk3"]
+[gd_scene load_steps=8 format=3 uid="uid://c17x7kmjmqdk3"]
 
 [ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_yhnvx"]
 [ext_resource type="Material" uid="uid://bg5hb1744y4ik" path="res://assets/textures/material/planks/planks.material" id="2_58abf"]
 [ext_resource type="Material" uid="uid://du8w0x0kmgjui" path="res://assets/textures/material/bricks/bricks.tres" id="3_dimow"]
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="4_s0xrk"]
+[ext_resource type="PackedScene" uid="uid://bk4h14lkwp04a" path="res://scenes/objects/furniture/desk.tscn" id="5_u4bki"]
+[ext_resource type="PackedScene" uid="uid://ced2w03t8er5k" path="res://scenes/objects/physics_objects/cube.tscn" id="6_ndtyp"]
+[ext_resource type="PackedScene" uid="uid://y7mgnooudpqv" path="res://scenes/objects/physics_objects/vent.tscn" id="7_r3yjb"]
 
 [node name="LVL1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
@@ -27,5 +30,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 6)
+
+[node name="Desk" parent="." instance=ExtResource("5_u4bki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.64074, 1, 0)
+
+[node name="Cube" parent="." instance=ExtResource("6_ndtyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.920002, 0.15612, 1.95953)
+
+[node name="Vent" parent="." instance=ExtResource("7_r3yjb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.54621, 2.315, -3.06745)
 
 [editable path="interior"]

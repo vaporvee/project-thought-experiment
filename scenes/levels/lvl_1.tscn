@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://22blfybi6n4q" path="res://scenes/objects/completion_counter.tscn" id="12_vn8j0"]
 [ext_resource type="PackedScene" uid="uid://cy0x2nliyw8gw" path="res://scenes/objects/door.tscn" id="13_fhdru"]
 [ext_resource type="PackedScene" uid="uid://dqy8bqf1chm8c" path="res://scenes/objects/interactables/button_stand.tscn" id="14_mpdbg"]
-[ext_resource type="PackedScene" uid="uid://ced2w03t8er5k" path="res://scenes/objects/cube.tscn" id="15_40os8"]
+[ext_resource type="PackedScene" uid="uid://ced2w03t8er5k" path="res://scenes/objects/physics_objects/cube.tscn" id="15_40os8"]
 [ext_resource type="AudioStream" uid="uid://cgvbxwsnkbs43" path="res://assets/audio/voicelines/anouncer_lvl1_01.ogg" id="15_b0jr0"]
 [ext_resource type="PackedScene" uid="uid://ce8nemacxi67m" path="res://scenes/audio_subtitle_system.tscn" id="16_2wrmg"]
 [ext_resource type="AudioStream" uid="uid://bflyad1e0la3d" path="res://assets/audio/voicelines/anouncer_lvl1_02.ogg" id="16_ova7a"]

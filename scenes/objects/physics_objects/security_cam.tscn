@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg2t4r1vey0pg"]
+
+[ext_resource type="ArrayMesh" uid="uid://0w3r7ayg26vy" path="res://assets/models/security_cam.obj" id="1_23hxs"]
+[ext_resource type="Material" uid="uid://canvgrlphqagw" path="res://assets/materials/light_metal.material" id="2_7sdra"]
+[ext_resource type="Material" uid="uid://cxjgare3kcbtl" path="res://assets/materials/dark_metal2.material" id="3_2tsoq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
+rough = true
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qn8tl"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
+size = Vector3(0.773401, 0.417932, 0.4)
+
+[node name="Cube" type="RigidBody3D" groups=["pushables"]]
+collision_priority = 2.0
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_rff84")
+continuous_cd = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = ExtResource("1_23hxs")
+surface_material_override/0 = ExtResource("2_7sdra")
+surface_material_override/1 = ExtResource("3_2tsoq")
+surface_material_override/2 = SubResource("StandardMaterial3D_qn8tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.164203, 0.0343201, 0)
+shape = SubResource("BoxShape3D_bsmvc")

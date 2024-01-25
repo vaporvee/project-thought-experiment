@@ -38,7 +38,6 @@ enabled=PackedStringArray("res://addons/destruction/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://addons/": "purple",
 "res://assets/": "pink",
 "res://assets/models/": "pink",
 "res://resources/": "yellow",

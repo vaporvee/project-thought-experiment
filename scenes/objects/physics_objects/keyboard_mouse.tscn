@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://jtb3abokylwq"]
+
+[ext_resource type="ArrayMesh" uid="uid://b63yl40nfg4hi" path="res://assets/models/keyboard_mouse.obj" id="1_rgwan"]
+[ext_resource type="Material" uid="uid://c8bic1or51fbf" path="res://assets/materials/old_plastic.material" id="2_gdlfn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
+rough = true
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
+size = Vector3(0.276, 0.04, 0.7)
+
+[node name="Cube" type="RigidBody3D" groups=["pushables"]]
+collision_priority = 2.0
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_rff84")
+continuous_cd = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rgwan")
+surface_material_override/0 = ExtResource("2_gdlfn")
+surface_material_override/1 = ExtResource("2_gdlfn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000107422, 0.0221525, -0.0528177)
+shape = SubResource("BoxShape3D_bsmvc")

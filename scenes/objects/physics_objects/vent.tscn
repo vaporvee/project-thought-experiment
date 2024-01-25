@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://y7mgnooudpqv"]
+
+[ext_resource type="ArrayMesh" uid="uid://chtnprm8pe33p" path="res://assets/models/vent.obj" id="1_eu8db"]
+[ext_resource type="Material" uid="uid://ctadhqfpd0j5u" path="res://assets/textures/material/metal/metal.material" id="2_dsp1h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
+rough = true
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
+size = Vector3(0.05, 0.65, 0.8)
+
+[node name="Vent" type="RigidBody3D" groups=["pushables"]]
+collision_priority = 2.0
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_rff84")
+freeze = true
+continuous_cd = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = ExtResource("1_eu8db")
+surface_material_override/0 = ExtResource("2_dsp1h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bsmvc")
