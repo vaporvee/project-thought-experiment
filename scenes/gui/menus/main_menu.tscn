@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dji1rniuusnmy"]
+[gd_scene load_steps=9 format=3 uid="uid://dji1rniuusnmy"]
 
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_1osxu"]
 [ext_resource type="PackedScene" uid="uid://ckad8stc13n83" path="res://scenes/levels/lvl_1.tscn" id="2_pnids"]
 [ext_resource type="Texture2D" uid="uid://drg0qhwicg2df" path="res://assets/textures/gui/logo.png" id="3_a5ih4"]
 [ext_resource type="FontFile" uid="uid://cr7a85ntk0t0k" path="res://assets/fonts/spacegrotesk_bold.ttf" id="4_26y7w"]
+[ext_resource type="Texture2D" uid="uid://dq2r0xndibo3w" path="res://assets/textures/gui/settings_icon.svg" id="5_5kyv0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sr4tr"]
 
@@ -21,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1osxu")
+metadata/_edit_lock_ = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 self_modulate = Color(0.356863, 0.356863, 0.356863, 1)
@@ -58,15 +60,14 @@ render_target_update_mode = 0
 current = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(265, 95.4)
+custom_minimum_size = Vector2(265, 159)
 layout_mode = 0
 offset_left = 128.0
-offset_top = 12.0
+offset_top = 16.0
 offset_right = 393.0
-offset_bottom = 171.0
+offset_bottom = 175.0
 texture = ExtResource("3_a5ih4")
 expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="ButtonCOntainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -84,6 +85,7 @@ grow_vertical = 2
 
 [node name="StartGame" type="Button" parent="ButtonCOntainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_26y7w")
 theme_override_font_sizes/font_size = 96
@@ -94,17 +96,43 @@ text = "Spiel starten"
 
 [node name="Levelselect" type="Button" parent="ButtonCOntainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("4_26y7w")
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 86
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sr4tr")
 text = "Levelauswahl"
 
 [node name="QuitGame" type="Button" parent="ButtonCOntainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("4_26y7w")
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 72
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sr4tr")
 text = "Spiel beenden"
+
+[node name="TopInfo" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = 79.0
+offset_right = -128.0
+offset_bottom = 136.0
+grow_horizontal = 0
+theme_override_constants/separation = 16
+
+[node name="ProgressBar" type="ProgressBar" parent="TopInfo"]
+custom_minimum_size = Vector2(280, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+max_value = 5.0
+value = 1.0
+
+[node name="Settings" type="Button" parent="TopInfo"]
+layout_mode = 2
+icon = ExtResource("5_5kyv0")
 
 [connection signal="pressed" from="ButtonCOntainer/StartGame" to="." method="_on_start_game_pressed"]
 

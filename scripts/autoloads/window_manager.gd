@@ -12,7 +12,10 @@ func _ready() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		popup_close_dialog()
+		if get_tree().current_scene is MainMenu :
+			get_tree().quit()
+		else:
+			popup_close_dialog()
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 		show_pause_menu()
 
