@@ -16,6 +16,8 @@ var camera_senitivity: float = 0.5
 @onready var spring_arm: SpringArm3D = $Camera3D/SpringArm3D
 
 func _ready() -> void:
+	if get_tree().current_scene is MainMenu:
+		queue_free()
 	capture()
 	camera.make_current()
 	$Camera3D/DDOF.show() # Würde den spieler im editor unsichtbar machen

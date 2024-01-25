@@ -98,6 +98,9 @@ shape = SubResource("BoxShape3D_lygjd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.27434, 3)
 voice_lines = Array[ExtResource("18_jxpoe")]([SubResource("Resource_u3j5u"), SubResource("Resource_3g4yn"), SubResource("Resource_6wqks"), SubResource("Resource_im7qv")])
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 6)
+
 [connection signal="lock" from="CompletionCounter" to="Door" method="close"]
 [connection signal="unlock" from="CompletionCounter" to="Door" method="open"]
 

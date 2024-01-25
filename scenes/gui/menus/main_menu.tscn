@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dji1rniuusnmy"]
+[gd_scene load_steps=8 format=3 uid="uid://dji1rniuusnmy"]
 
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_1osxu"]
+[ext_resource type="PackedScene" uid="uid://ckad8stc13n83" path="res://scenes/levels/lvl_1.tscn" id="2_pnids"]
+[ext_resource type="Texture2D" uid="uid://drg0qhwicg2df" path="res://assets/textures/gui/logo.png" id="3_a5ih4"]
+[ext_resource type="FontFile" uid="uid://cr7a85ntk0t0k" path="res://assets/fonts/spacegrotesk_bold.ttf" id="4_26y7w"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_yh38l"]
-font_size = 40
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sr4tr"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_bc05y"]
 action = &"ui_accept"
@@ -20,44 +22,94 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1osxu")
 
-[node name="LogoContainer" type="VBoxContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+self_modulate = Color(0.356863, 0.356863, 0.356863, 1)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -197.0
-offset_top = -88.5
-offset_right = 197.0
-offset_bottom = 88.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
-[node name="Title" type="Label" parent="LogoContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Project
-Thought Experiment"
-label_settings = SubResource("LabelSettings_yh38l")
-horizontal_alignment = 1
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1980, 1080)
+render_target_update_mode = 4
 
-[node name="StartGame" type="Button" parent="."]
+[node name="LVL1" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_pnids")]
+
+[node name="Camera3D" parent="SubViewportContainer/SubViewport/LVL1/Player" index="1"]
+current = false
+
+[node name="SpringArm3D" parent="SubViewportContainer/SubViewport/LVL1/Player/Camera3D" index="1"]
+visible = false
+
+[node name="AudioListener3D" parent="SubViewportContainer/SubViewport/LVL1/Player/Camera3D" index="3"]
+current = true
+
+[node name="GravityGunLayer" parent="SubViewportContainer/SubViewport/LVL1/Player" index="2"]
+visible = false
+
+[node name="SubViewport" parent="SubViewportContainer/SubViewport/LVL1/Player/GravityGunLayer/SubViewportContainer" index="0"]
+render_target_update_mode = 0
+
+[node name="Camera3D" parent="SubViewportContainer/SubViewport/LVL1" index="12"]
+current = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(265, 95.4)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 12.0
+offset_right = 393.0
+offset_bottom = 171.0
+texture = ExtResource("3_a5ih4")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ButtonCOntainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -93.0
-offset_right = 53.0
-offset_bottom = -62.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -783.0
+offset_top = -190.0
+offset_right = -128.0
+offset_bottom = 190.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StartGame" type="Button" parent="ButtonCOntainer"]
+layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("4_26y7w")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sr4tr")
 shortcut = SubResource("Shortcut_fasub")
 shortcut_in_tooltip = false
 text = "Spiel starten"
 
-[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[node name="Levelselect" type="Button" parent="ButtonCOntainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_26y7w")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sr4tr")
+text = "Levelauswahl"
+
+[node name="QuitGame" type="Button" parent="ButtonCOntainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_26y7w")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sr4tr")
+text = "Spiel beenden"
+
+[connection signal="pressed" from="ButtonCOntainer/StartGame" to="." method="_on_start_game_pressed"]
+
+[editable path="SubViewportContainer/SubViewport/LVL1"]
+[editable path="SubViewportContainer/SubViewport/LVL1/interior"]
+[editable path="SubViewportContainer/SubViewport/LVL1/Player"]
+[editable path="SubViewportContainer/SubViewport/LVL1/Player/GravityGunLayer"]
+[editable path="SubViewportContainer/SubViewport/LVL1/AudioSubtitleSystem"]

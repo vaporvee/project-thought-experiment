@@ -16,7 +16,7 @@ config/auto_accept_quit=false
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="res://assets/textures/gui/pte_icon.svg"
 
 [autoload]
 
@@ -24,6 +24,10 @@ WindowManager="*res://scripts/autoloads/window_manager.gd"
 
 [display]
 
+window/size/viewport_width=1980
+window/size/viewport_height=1080
+window/size/window_width_override=1188
+window/size/window_height_override=648
 window/stretch/mode="canvas_items"
 window/size/mode.release=4
 
@@ -47,6 +51,7 @@ folder_colors={
 [gui]
 
 theme/custom="res://resources/main_theme.tres"
+theme/custom_font="res://assets/fonts/rx100.otf"
 
 [input]
 
