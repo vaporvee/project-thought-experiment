@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c17x7kmjmqdk3"]
+
+[ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_yhnvx"]
+[ext_resource type="Material" uid="uid://bg5hb1744y4ik" path="res://assets/textures/material/planks/planks.material" id="2_58abf"]
+[ext_resource type="Material" uid="uid://du8w0x0kmgjui" path="res://assets/textures/material/bricks/bricks.tres" id="3_dimow"]
+[ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="4_s0xrk"]
+
+[node name="LVL1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.707107, -4.21468e-08, -0.5, -0.5, 0.707107, -0.5, -0.5, -0.707107, 0, 0, 0)
+directional_shadow_blend_splits = true
+sky_mode = 1
+
+[node name="interior" parent="." instance=ExtResource("1_yhnvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Hallway" parent="interior" index="0"]
+surface_material_override/0 = ExtResource("2_58abf")
+
+[node name="Room" parent="interior" index="1"]
+surface_material_override/0 = ExtResource("3_dimow")
+
+[node name="Player" parent="." instance=ExtResource("4_s0xrk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 6)
+
+[editable path="interior"]

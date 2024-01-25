@@ -15,6 +15,10 @@ var camera_senitivity: float = 0.5
 @onready var goal: Node3D = $Camera3D/SpringArm3D/GravityGunGoal
 @onready var spring_arm: SpringArm3D = $Camera3D/SpringArm3D
 
+@onready var sound_effect: SoundEffect = $FootSteps
+var step_sound_toggle: bool
+@onready var step_timer: Timer = $FootStepTimer
+
 func _ready() -> void:
 	if get_tree().current_scene is MainMenu:
 		queue_free()
@@ -31,16 +35,22 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		sound_effect.play_key("jump")
 	
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED * delta * 50
 		velocity.z = direction.z * SPEED * delta * 50
+		if step_timer.is_stopped() && is_on_floor():
+			sound_effect.play_key("step1")
+			step_timer.start()
+		elif !is_on_floor():
+			step_timer.stop()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 50)
 		velocity.z = move_toward(velocity.z, 0, SPEED * delta * 50)
-	
+		step_timer.stop()
 	move_and_slide()
 	
 	# Pushing other objects
@@ -63,3 +73,11 @@ func capture(value: bool = true) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _on_foot_step_timer_timeout() -> void:
+	step_sound_toggle = !step_sound_toggle
+	if step_sound_toggle:
+		sound_effect.play_key("step1")
+	else:
+		sound_effect.play_key("step2")

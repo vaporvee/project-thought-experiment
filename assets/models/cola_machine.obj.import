@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cfpny58nu65hj"
+path="res://.godot/imported/cola_machine.obj-b8c4284e8b3b218574e5ed9c81ea8c2c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cola_machine.obj-b8c4284e8b3b218574e5ed9c81ea8c2c.mesh"]
+
+source_file="res://assets/models/cola_machine.obj"
+dest_files=["res://.godot/imported/cola_machine.obj-b8c4284e8b3b218574e5ed9c81ea8c2c.mesh", "res://.godot/imported/cola_machine.obj-b8c4284e8b3b218574e5ed9c81ea8c2c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

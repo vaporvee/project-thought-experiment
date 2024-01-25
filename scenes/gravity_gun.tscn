@@ -1,12 +1,18 @@
-[gd_scene load_steps=24 format=3 uid="uid://cl6gw3huejnrl"]
+[gd_scene load_steps=34 format=3 uid="uid://cl6gw3huejnrl"]
 
 [ext_resource type="Script" path="res://scripts/gravity_gun.gd" id="1_0upyy"]
 [ext_resource type="ArrayMesh" uid="uid://cxw30fmp15jsd" path="res://assets/models/gun.obj" id="1_803cf"]
 [ext_resource type="Environment" uid="uid://drn5fwa4uhv4m" path="res://resources/environment.tres" id="1_vtn44"]
-[ext_resource type="Material" uid="uid://b6r8e4302xg1d" path="res://assets/materials/dark_metal.material" id="2_qrl87"]
 [ext_resource type="Shader" path="res://shaders/pbr_glass.gdshader" id="3_aeppb"]
+[ext_resource type="Texture2D" uid="uid://bawjipies8h2d" path="res://assets/textures/material/scratcheslight/scratcheslight_overlay_var2.jpg" id="4_ouoar"]
+[ext_resource type="Texture2D" uid="uid://d3dolqycw3mpv" path="res://assets/textures/material/scratcheslight/scratcheslight_nrm.jpg" id="5_h51ti"]
 [ext_resource type="Texture2D" uid="uid://b4en3dw3q324p" path="res://assets/textures/circle.png" id="6_bmyqq"]
 [ext_resource type="Texture2D" uid="uid://bjx2i53wtjair" path="res://assets/textures/gui/crosshair.png" id="7_2qfex"]
+[ext_resource type="Script" path="res://scripts/sound_effect.gd" id="8_8bfw8"]
+[ext_resource type="AudioStream" uid="uid://clloa1lhfruf2" path="res://assets/audio/gun/gravity_gun.wav" id="9_mhjww"]
+[ext_resource type="Script" path="res://scripts/soundeffect_resource.gd" id="10_yctqg"]
+[ext_resource type="AudioStream" uid="uid://rm7sannav5x5" path="res://assets/audio/gun/gravity_gun_drop.wav" id="11_f34jp"]
+[ext_resource type="AudioStream" uid="uid://b2bvpfryjdlnt" path="res://assets/audio/gun/gravity_gun_freeze.wav" id="12_gps53"]
 
 [sub_resource type="World3D" id="World3D_wp4pn"]
 environment = ExtResource("1_vtn44")
@@ -17,6 +23,20 @@ script/source = "extends SubViewport
 func _ready() -> void:
 	msaa_3d = ProjectSettings.get_setting(\"rendering/anti_aliasing/quality/msaa_3d\",0)
 "
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5ta3"]
+cull_mode = 2
+albedo_color = Color(0.137255, 0.160784, 0.0745098, 1)
+albedo_texture = ExtResource("4_ouoar")
+albedo_texture_msdf = true
+metallic = 0.7
+roughness = 0.7
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("5_h51ti")
+clearcoat = 0.0
+clearcoat_roughness = 1.0
+uv1_scale = Vector3(3, 3, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b1al8"]
 render_priority = 0
@@ -114,6 +134,21 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bkc3"]
 shader = SubResource("Shader_3q2t2")
 
+[sub_resource type="Resource" id="Resource_h6pb1"]
+script = ExtResource("10_yctqg")
+key = "gravity"
+audio = ExtResource("9_mhjww")
+
+[sub_resource type="Resource" id="Resource_5l2w7"]
+script = ExtResource("10_yctqg")
+key = "drop"
+audio = ExtResource("11_f34jp")
+
+[sub_resource type="Resource" id="Resource_wyis3"]
+script = ExtResource("10_yctqg")
+key = "freeze"
+audio = ExtResource("12_gps53")
+
 [node name="GravityGunLayer" type="CanvasLayer"]
 follow_viewport_enabled = true
 script = ExtResource("1_0upyy")
@@ -153,7 +188,7 @@ sky_mode = 1
 transform = Transform3D(0.00445237, 0.182181, 0.983255, 0.0240231, 0.982961, -0.182236, -0.999701, 0.0244322, -4.29794e-08, 0.895815, -0.569743, -1.63173)
 mesh = ExtResource("1_803cf")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("2_qrl87")
+surface_material_override/0 = SubResource("StandardMaterial3D_t5ta3")
 surface_material_override/1 = SubResource("ShaderMaterial_b1al8")
 surface_material_override/2 = SubResource("StandardMaterial3D_3g65u")
 surface_material_override/3 = SubResource("StandardMaterial3D_sgrb8")
@@ -216,5 +251,39 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("7_2qfex")
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+bus = &"Sound Effects"
+script = ExtResource("8_8bfw8")
+audio_library = Array[ExtResource("10_yctqg")]([SubResource("Resource_h6pb1"), SubResource("Resource_5l2w7"), SubResource("Resource_wyis3")])
+
+[node name="HUD" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(584, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -607.0
+offset_top = -73.0
+offset_right = -23.0
+offset_bottom = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 100
+
+[node name="Freeze" type="Label" parent="HUD"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 48
+text = "Freeze: Inaktiv"
+
+[node name="Distance" type="Label" parent="HUD"]
+custom_minimum_size = Vector2(286, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Distanz: "
+clip_text = true
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

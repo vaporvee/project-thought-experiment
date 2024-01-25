@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://gg5ph541e4p3"]
+[gd_scene load_steps=19 format=3 uid="uid://gg5ph541e4p3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8d33x"]
 [ext_resource type="PackedScene" uid="uid://cl6gw3huejnrl" path="res://scenes/gravity_gun.tscn" id="2_ahuce"]
 [ext_resource type="Script" path="res://shaders/gdscript_assist/ddof.gd" id="2_jg7te"]
 [ext_resource type="Shader" path="res://shaders/ddof.gdshader" id="2_rpqdy"]
+[ext_resource type="Script" path="res://scripts/sound_effect.gd" id="5_t1bvf"]
+[ext_resource type="Script" path="res://scripts/soundeffect_resource.gd" id="6_4revs"]
+[ext_resource type="AudioStream" uid="uid://do3u2sqjla0as" path="res://assets/audio/footsteps/jump.wav" id="6_oau5k"]
+[ext_resource type="AudioStream" uid="uid://cugjcjiiq2xvo" path="res://assets/audio/footsteps/step1.wav" id="8_kxd2q"]
+[ext_resource type="AudioStream" uid="uid://d112eqcmac840" path="res://assets/audio/footsteps/step2.wav" id="9_4mctc"]
+[ext_resource type="AudioStream" uid="uid://cf87vn2hrh7u8" path="res://assets/audio/footsteps/land.wav" id="10_n3ln3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2qx4s"]
 radius = 0.4
@@ -24,6 +30,26 @@ flip_faces = true
 size = Vector2(2, 2)
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_fvhib"]
+
+[sub_resource type="Resource" id="Resource_n8h0v"]
+script = ExtResource("6_4revs")
+key = "jump"
+audio = ExtResource("6_oau5k")
+
+[sub_resource type="Resource" id="Resource_a4b4g"]
+script = ExtResource("6_4revs")
+key = "step1"
+audio = ExtResource("8_kxd2q")
+
+[sub_resource type="Resource" id="Resource_yjl6f"]
+script = ExtResource("6_4revs")
+key = "step2"
+audio = ExtResource("9_4mctc")
+
+[sub_resource type="Resource" id="Resource_qe4pm"]
+script = ExtResource("6_4revs")
+key = "land"
+audio = ExtResource("10_n3ln3")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_8d33x")
@@ -59,5 +85,14 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 
 [node name="GravityGunLayer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ahuce")]
 player = NodePath("..")
+
+[node name="FootStepTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="FootSteps" type="AudioStreamPlayer" parent="."]
+script = ExtResource("5_t1bvf")
+audio_library = Array[ExtResource("6_4revs")]([SubResource("Resource_n8h0v"), SubResource("Resource_a4b4g"), SubResource("Resource_yjl6f"), SubResource("Resource_qe4pm")])
+
+[connection signal="timeout" from="FootStepTimer" to="." method="_on_foot_step_timer_timeout"]
 
 [editable path="GravityGunLayer"]

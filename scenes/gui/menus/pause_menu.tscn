@@ -47,18 +47,21 @@ grow_vertical = 2
 [node name="Continue" type="Button" parent="VBoxContainer"]
 process_mode = 3
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 46
 text = "Weiter spielen"
 
 [node name="RestartLevel" type="Button" parent="VBoxContainer"]
 process_mode = 3
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 46
 text = "Level neu starten"
 
 [node name="CloseLevel" type="Button" parent="VBoxContainer"]
 process_mode = 3
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 46
 text = "Beenden"
 

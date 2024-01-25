@@ -1,12 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://dji1rniuusnmy"]
+[gd_scene load_steps=14 format=3 uid="uid://dji1rniuusnmy"]
 
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_1osxu"]
 [ext_resource type="PackedScene" uid="uid://ckad8stc13n83" path="res://scenes/levels/lvl_1.tscn" id="2_pnids"]
 [ext_resource type="Texture2D" uid="uid://drg0qhwicg2df" path="res://assets/textures/gui/logo.png" id="3_a5ih4"]
 [ext_resource type="FontFile" uid="uid://cr7a85ntk0t0k" path="res://assets/fonts/spacegrotesk_bold.ttf" id="4_26y7w"]
 [ext_resource type="Texture2D" uid="uid://dq2r0xndibo3w" path="res://assets/textures/gui/settings_icon.svg" id="5_5kyv0"]
+[ext_resource type="Script" path="res://scripts/menus/level_selection.gd" id="6_fj3e6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sr4tr"]
+content_margin_left = 60.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hsv5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vej04"]
+content_margin_left = 60.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nitqm"]
+content_margin_left = 60.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjer7"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_bc05y"]
 action = &"ui_accept"
@@ -69,7 +81,7 @@ offset_bottom = 175.0
 texture = ExtResource("3_a5ih4")
 expand_mode = 1
 
-[node name="ButtonCOntainer" type="VBoxContainer" parent="."]
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -83,31 +95,45 @@ offset_bottom = 190.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="StartGame" type="Button" parent="ButtonCOntainer"]
+[node name="StartGame" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_26y7w")
 theme_override_font_sizes/font_size = 96
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sr4tr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hsv5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vej04")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nitqm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tjer7")
 shortcut = SubResource("Shortcut_fasub")
 shortcut_in_tooltip = false
 text = "Spiel starten"
 
-[node name="Levelselect" type="Button" parent="ButtonCOntainer"]
+[node name="Levelselect" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+tooltip_text = "Noch nicht verfügbar!"
 theme_override_fonts/font = ExtResource("4_26y7w")
 theme_override_font_sizes/font_size = 86
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sr4tr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hsv5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sr4tr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nitqm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tjer7")
+disabled = true
 text = "Levelauswahl"
 
-[node name="QuitGame" type="Button" parent="ButtonCOntainer"]
+[node name="QuitGame" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("4_26y7w")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sr4tr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hsv5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vej04")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nitqm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tjer7")
 text = "Spiel beenden"
 
 [node name="TopInfo" type="HBoxContainer" parent="."]
@@ -122,19 +148,47 @@ offset_bottom = 136.0
 grow_horizontal = 0
 theme_override_constants/separation = 16
 
-[node name="ProgressBar" type="ProgressBar" parent="TopInfo"]
+[node name="LevelProgress" type="VBoxContainer" parent="TopInfo"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="TopInfo/LevelProgress"]
+layout_mode = 2
+text = "Level 0/3"
+
+[node name="ProgressBar" type="ProgressBar" parent="TopInfo/LevelProgress"]
 custom_minimum_size = Vector2(280, 16)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 max_value = 5.0
-value = 1.0
 
 [node name="Settings" type="Button" parent="TopInfo"]
 layout_mode = 2
+size_flags_vertical = 0
+tooltip_text = "Noch nicht verfügbar!"
+disabled = true
 icon = ExtResource("5_5kyv0")
 
-[connection signal="pressed" from="ButtonCOntainer/StartGame" to="." method="_on_start_game_pressed"]
+[node name="LevelSelection" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(1500, 700)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -750.0
+offset_top = -292.0
+offset_right = 750.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_fj3e6")
+
+[connection signal="pressed" from="ButtonContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="ButtonContainer/QuitGame" to="." method="_on_quit_game_pressed"]
 
 [editable path="SubViewportContainer/SubViewport/LVL1"]
 [editable path="SubViewportContainer/SubViewport/LVL1/interior"]

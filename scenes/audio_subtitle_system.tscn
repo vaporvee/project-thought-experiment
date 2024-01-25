@@ -18,6 +18,7 @@ size = Vector3(11, 5, 3)
 
 [node name="AudioSubtitleSystem" type="AudioStreamPlayer3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.27434, 0)
+bus = &"Dialogue"
 script = ExtResource("1_5vtxu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -30,16 +31,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -338.0
-offset_top = -121.0
-offset_right = 338.0
-offset_bottom = -7.0
+offset_left = -607.5
+offset_top = -226.0
+offset_right = 607.5
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_eoq1n")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 scroll_active = false
 scroll_following = true

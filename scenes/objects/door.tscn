@@ -1,19 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy0x2nliyw8gw"]
+[gd_scene load_steps=9 format=3 uid="uid://cy0x2nliyw8gw"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_qix0h"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_8iti4"]
-size = Vector3(1.5, 3, 0.2)
+[ext_resource type="ArrayMesh" uid="uid://dcoh3pfu6hb6q" path="res://assets/models/door.obj" id="2_vc20h"]
+[ext_resource type="Material" uid="uid://canvgrlphqagw" path="res://assets/materials/light_metal.material" id="3_ti6vs"]
+[ext_resource type="ArrayMesh" uid="uid://bpv5cwupbmdtk" path="res://assets/models/door_handle.obj" id="4_frcys"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pejvk"]
 size = Vector3(1.5, 3, 0.2)
 
-[sub_resource type="Animation" id="Animation_hlq2m"]
+[sub_resource type="Animation" id="Animation_1220n"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D2/Handle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.349066, 1.5708, -1.5708), Vector3(5.93412, 1.5708, -1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_3fs6g"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("MeshInstance3D2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,44 +50,48 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_53g2p"]
-resource_name = "open"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D2/Handle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.4, 0, 0)]
+"values": [Vector3(0.349066, 1.5708, -1.5708)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r8evj"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5xgbb"]
 _data = {
-"RESET": SubResource("Animation_hlq2m"),
-"open": SubResource("Animation_53g2p")
+"RESET": SubResource("Animation_3fs6g"),
+"open": SubResource("Animation_1220n")
 }
 
 [node name="Door" type="Node3D"]
 script = ExtResource("1_qix0h")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_8iti4")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("2_vc20h")
+surface_material_override/0 = ExtResource("3_ti6vs")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+transform = Transform3D(1.33333, 0, 0, 0, 1.33333, 0, 0, 0, 1.33333, 0, 0, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_pejvk")
 
+[node name="Handle" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(-0.456027, -1.17323e-07, 1.25292, -1.25292, -8.21505e-08, -0.456027, 7.82154e-08, -2, -5.4767e-08, -0.757807, -0.445, -0.399)
+mesh = ExtResource("4_frcys")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_ti6vs")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../MeshInstance3D")
 libraries = {
-"": SubResource("AnimationLibrary_r8evj")
+"": SubResource("AnimationLibrary_5xgbb")
 }

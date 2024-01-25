@@ -16,6 +16,7 @@ buffer = PackedFloat32Array(1.001, 0, 0, -0.075992, 0, 0, -1.001, -0.0484443, 0,
 
 [node name="CompletionCounter" type="MeshInstance3D"]
 editor_description = "The amount of signals it needs connected and fired to emit a signal"
+visible = false
 mesh = SubResource("BoxMesh_w280a")
 script = ExtResource("1_40xge")
 
