@@ -55,13 +55,12 @@ size = Vector2i(1980, 1080)
 render_target_update_mode = 4
 
 [node name="LVL1" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_pnids")]
-process_mode = 3
 
 [node name="Player" parent="SubViewportContainer/SubViewport/LVL1" index="2"]
 visible = false
 
-[node name="AudioListener3D" parent="SubViewportContainer/SubViewport/LVL1/Player/Camera3D" index="3"]
-current = true
+[node name="Camera3D" parent="SubViewportContainer/SubViewport/LVL1/Player" index="1"]
+current = false
 
 [node name="GravityGunLayer" parent="SubViewportContainer/SubViewport/LVL1/Player" index="2"]
 visible = false
