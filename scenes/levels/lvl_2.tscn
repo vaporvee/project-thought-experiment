@@ -28,7 +28,7 @@ ao_enabled = true
 ao_texture = ExtResource("5_2hu3x")
 uv1_scale = Vector3(8.5, 8.5, 8.5)
 
-[node name="LVL1" type="Node3D"]
+[node name="LVL2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

@@ -1,4 +1,17 @@
-[gd_resource type="Theme" format=3 uid="uid://yba31lyxnmib"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://yba31lyxnmib"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2juxv"]
+bg_color = Color(0.0352941, 0.0784314, 0.0588235, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.941176, 0.215686, 0.564706, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [resource]
+Panel/styles/panel = SubResource("StyleBoxFlat_2juxv")
 TooltipLabel/font_sizes/font_size = 32

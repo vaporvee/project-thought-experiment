@@ -13,3 +13,5 @@ func _on_level_switched() -> void:
 			soundeffect.play_key("main")
 		"LVL1":
 			soundeffect.play_key("lvl1")
+		"LVL2":
+			soundeffect.play_key("lvl2")
