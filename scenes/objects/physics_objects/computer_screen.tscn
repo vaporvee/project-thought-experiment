@@ -12,7 +12,7 @@ absorbent = true
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
-size = Vector3(0.894531, 1.15163, 1.1)
+size = Vector3(0.627, 0.806, 0.77)
 
 [node name="ComputerScreen" type="RigidBody3D" groups=["pushables"]]
 collision_priority = 2.0
@@ -21,6 +21,7 @@ physics_material_override = SubResource("PhysicsMaterial_rff84")
 continuous_cd = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 mesh = ExtResource("1_561hv")
 surface_material_override/0 = ExtResource("2_r7j4a")
 surface_material_override/1 = SubResource("StandardMaterial3D_vbaul")

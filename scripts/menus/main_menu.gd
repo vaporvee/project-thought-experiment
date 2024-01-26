@@ -2,6 +2,7 @@ extends Control
 class_name MainMenu
 
 func _ready() -> void:
+	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	LevelManager.level_pointer = 0
 

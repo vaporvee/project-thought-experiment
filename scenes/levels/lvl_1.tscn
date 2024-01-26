@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ckad8stc13n83"]
+[gd_scene load_steps=32 format=3 uid="uid://ckad8stc13n83"]
 
 [ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_xs30l"]
 [ext_resource type="Material" uid="uid://1w6e5sx6poff" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare.material" id="2_evxh1"]
@@ -19,7 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://bi1rf1hi2fm2r" path="res://assets/audio/voicelines/anouncer_intro_02.ogg" id="19_2roq0"]
 [ext_resource type="AudioStream" uid="uid://rg20ayxe5m75" path="res://assets/audio/voicelines/anouncer_intro_03.ogg" id="20_dqpxk"]
 [ext_resource type="PackedScene" uid="uid://d2rmg0r1hircj" path="res://scenes/level_finish_area.tscn" id="20_tt84f"]
+[ext_resource type="PackedScene" uid="uid://n2fxmsp27rfs" path="res://scenes/objects/furniture/wall_holder.tscn" id="21_lktft"]
 [ext_resource type="AudioStream" uid="uid://ddpvabd43s3p4" path="res://assets/audio/voicelines/anouncer_intro_04.ogg" id="21_n11nj"]
+[ext_resource type="Material" uid="uid://canvgrlphqagw" path="res://assets/materials/light_metal.material" id="22_ixwoq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thqbu"]
 
@@ -74,14 +76,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 [node name="Ground1" parent="interior" index="0"]
 surface_material_override/0 = ExtResource("2_evxh1")
 
+[node name="StaticBody3D" parent="interior/Ground1" index="0"]
+collision_layer = 7
+collision_mask = 7
+
 [node name="Walls2" parent="interior" index="1"]
 surface_material_override/0 = ExtResource("3_b6ww3")
+
+[node name="StaticBody3D" parent="interior/Walls2" index="0"]
+collision_layer = 7
+collision_mask = 7
 
 [node name="Ground2" parent="interior" index="2"]
 surface_material_override/0 = ExtResource("4_lyce0")
 
+[node name="StaticBody3D" parent="interior/Ground2" index="0"]
+collision_layer = 7
+collision_mask = 7
+
 [node name="Walls1" parent="interior" index="3"]
 surface_material_override/0 = ExtResource("7_nrt8m")
+
+[node name="StaticBody3D" parent="interior/Walls1" index="0"]
+collision_layer = 7
+collision_mask = 7
 
 [node name="Ceiling" parent="interior" index="4"]
 surface_material_override/0 = SubResource("StandardMaterial3D_thqbu")
@@ -98,7 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0617981, 3.08507, 6.31598)
 nodes_needed = [NodePath("../ButtonStand2"), NodePath("../ButtonStand3")]
 
 [node name="Door" parent="." instance=ExtResource("13_fhdru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0536218, 1.48562, 6.64)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09534, 1.48562, 6.64)
 
 [node name="ButtonStand2" parent="." instance=ExtResource("14_mpdbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.038, 0.65, 4)
@@ -121,6 +139,7 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Plane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.302632, 0, 0)
 mesh = SubResource("BoxMesh_wyr1d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane"]
@@ -136,8 +155,15 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 [node name="Area3D" parent="." instance=ExtResource("20_tt84f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.318473, 2, 10.63)
 
+[node name="Wallholder" parent="." instance=ExtResource("21_lktft")]
+transform = Transform3D(-4.37114e-07, 0, -15, 0, 10, 0, 10, 0, -6.55671e-07, 5.37708, 3.71967, -0.0776763)
+
+[node name="MeshInstance3D" parent="Wallholder" index="0"]
+surface_material_override/1 = ExtResource("22_ixwoq")
+
 [connection signal="lock" from="CompletionCounter" to="Door" method="close"]
 [connection signal="unlock" from="CompletionCounter" to="Door" method="open"]
 
 [editable path="interior"]
 [editable path="AudioSubtitleSystem"]
+[editable path="Wallholder"]

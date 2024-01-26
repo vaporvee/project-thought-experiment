@@ -15,9 +15,11 @@ func next_level() -> void:
 	level_pointer += 1
 	if level_pointer < levels.size():
 		transition.show()
+		get_tree().paused = true
 		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_packed(levels[level_pointer])
 		await get_tree().create_timer(2).timeout
+		get_tree().paused = false
 		transition.hide()
 	else:
 		get_tree().change_scene_to_file("res://scenes/gui/menus/game_finished.tscn")

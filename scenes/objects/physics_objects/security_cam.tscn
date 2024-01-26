@@ -19,6 +19,7 @@ size = Vector3(0.773401, 0.417932, 0.4)
 collision_priority = 2.0
 mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_rff84")
+freeze = true
 continuous_cd = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
