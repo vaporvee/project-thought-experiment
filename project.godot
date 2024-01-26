@@ -22,6 +22,7 @@ config/icon="res://assets/textures/gui/pte_icon.svg"
 
 WindowManager="*res://scripts/autoloads/window_manager.gd"
 LevelManager="*res://scenes/autoloads/level_manager.tscn"
+DiscordSDKLoader="*res://addons/discord-sdk-gd/nodes/discord_autoload.gd"
 
 [display]
 
@@ -34,11 +35,12 @@ window/size/mode.release=4
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/discord-sdk-gd/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
+"res://addons/": "purple",
 "res://assets/": "pink",
 "res://assets/models/": "pink",
 "res://resources/": "yellow",
