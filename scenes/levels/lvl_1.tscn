@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ckad8stc13n83"]
+[gd_scene load_steps=33 format=3 uid="uid://ckad8stc13n83"]
 
 [ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_xs30l"]
 [ext_resource type="Material" uid="uid://1w6e5sx6poff" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare.material" id="2_evxh1"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://n2fxmsp27rfs" path="res://scenes/objects/furniture/wall_holder.tscn" id="21_lktft"]
 [ext_resource type="AudioStream" uid="uid://ddpvabd43s3p4" path="res://assets/audio/voicelines/anouncer_intro_04.ogg" id="21_n11nj"]
 [ext_resource type="Material" uid="uid://canvgrlphqagw" path="res://assets/materials/light_metal.material" id="22_ixwoq"]
+[ext_resource type="PackedScene" uid="uid://ckv2ssarxiv8w" path="res://scenes/objects/physics_objects/froggy.tscn" id="23_uexwc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thqbu"]
 
@@ -160,6 +161,10 @@ transform = Transform3D(-4.37114e-07, 0, -15, 0, 10, 0, 10, 0, -6.55671e-07, 5.3
 
 [node name="MeshInstance3D" parent="Wallholder" index="0"]
 surface_material_override/1 = ExtResource("22_ixwoq")
+
+[node name="Froggy" parent="." instance=ExtResource("23_uexwc")]
+transform = Transform3D(0.162376, -0.965347, 0.2043, -0.0444635, 0.199679, 0.978852, -0.985727, -0.168026, -0.0104995, 7.00408, 0.191834, 0.998893)
+freeze = true
 
 [connection signal="lock" from="CompletionCounter" to="Door" method="close"]
 [connection signal="unlock" from="CompletionCounter" to="Door" method="open"]

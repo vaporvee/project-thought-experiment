@@ -1,0 +1,12 @@
+# Blender 3.6.8 MTL File: 'froggy.blend'
+# www.blender.org
+
+newmtl Texture
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd D:/byte-of-terror/assets/textures/material/froggy_texture.png
+map_d D:/byte-of-terror/assets/textures/material/froggy_texture.png

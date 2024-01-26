@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c17x7kmjmqdk3"]
+[gd_scene load_steps=22 format=3 uid="uid://c17x7kmjmqdk3"]
 
 [ext_resource type="PackedScene" uid="uid://cbb37i3xvtp50" path="res://assets/models/interior2.obj" id="3_wurqx"]
 [ext_resource type="Texture2D" uid="uid://dsn5u1ymp1eki" path="res://assets/textures/material/concrete/concrete_color.png" id="4_1qe3t"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bg2t4r1vey0pg" path="res://scenes/objects/physics_objects/security_cam.tscn" id="15_uo5we"]
 [ext_resource type="PackedScene" uid="uid://n2fxmsp27rfs" path="res://scenes/objects/furniture/wall_holder.tscn" id="16_f60rn"]
 [ext_resource type="PackedScene" uid="uid://b7evqwig6js8j" path="res://scenes/objects/physics_objects/office_chair.tscn" id="17_y5de5"]
+[ext_resource type="PackedScene" uid="uid://ckv2ssarxiv8w" path="res://scenes/objects/physics_objects/froggy.tscn" id="18_stcip"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f4qa"]
 albedo_texture = ExtResource("4_1qe3t")
@@ -27,6 +28,15 @@ normal_texture = ExtResource("6_h1os3")
 ao_enabled = true
 ao_texture = ExtResource("5_2hu3x")
 uv1_scale = Vector3(8.5, 8.5, 8.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6in6u"]
+viewport_path = NodePath("Cube7/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y082c"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_6in6u")
+uv1_scale = Vector3(3, 3, 3)
+uv1_offset = Vector3(-0.08, -0.47, 0)
 
 [node name="LVL2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
@@ -85,6 +95,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8526, 1.06541, -16.7374)
 [node name="ComputerScreen2" parent="." instance=ExtResource("12_djkgb")]
 transform = Transform3D(-0.305014, 0, 0.952348, 0, 1, 0, -0.952348, 0, -0.305014, 16.3998, 1.5475, -16.7259)
 
+[node name="MeshInstance3D" parent="ComputerScreen2" index="0"]
+surface_material_override/1 = SubResource("StandardMaterial3D_y082c")
+
 [node name="Desk3" parent="." instance=ExtResource("5_u4bki")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 15.9585, 1, -7.9819)
 
@@ -118,6 +131,11 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0.951174)
 [node name="Cube7" parent="." instance=ExtResource("15_uo5we")]
 transform = Transform3D(0.141057, 0, 0.990001, 0, 1, 0, -0.990001, 0, 0.141057, 1.35667, 7.33879, 16.6137)
 
+[node name="SubViewport" type="SubViewport" parent="Cube7"]
+
+[node name="Camera3D" type="Camera3D" parent="Cube7/SubViewport"]
+transform = Transform3D(-4.32313e-08, -0.989016, -0.147809, 1, -4.37114e-08, 0, -6.46095e-09, -0.147809, 0.989016, 2.41563, 7.35777, 17.1086)
+
 [node name="Wallholder" parent="." instance=ExtResource("16_f60rn")]
 transform = Transform3D(-2.5, 0, -3.77489e-07, 0, 2.5, 0, 3.77489e-07, 0, -2.5, 1.35957, 6.90852, 17.2163)
 
@@ -142,5 +160,9 @@ transform = Transform3D(-0.11022, 0, 0.993907, 0, 1, 0, -0.993907, 0, -0.11022, 
 [node name="Desk5" parent="." instance=ExtResource("5_u4bki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.041, 1, -12.067)
 
+[node name="Froggy" parent="." instance=ExtResource("18_stcip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.676921, -15)
+
 [editable path="interior2"]
+[editable path="ComputerScreen2"]
 [editable path="Area3D"]

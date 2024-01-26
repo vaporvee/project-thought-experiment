@@ -51,9 +51,9 @@ func _physics_process(_delta):
 		collider = null
 
 func lock_vertical_rotation(body: RigidBody3D, locked: bool):
-	if locked:
-		var rot = body.rotation
-		body.rotation = Vector3(0,rot.y,0)
+	#if locked:
+		#var rot = body.rotation
+		#body.rotation = Vector3(0,rot.y,0)
 	body.axis_lock_linear_x = locked
 	body.axis_lock_linear_z = locked
 	body.axis_lock_angular_x = locked

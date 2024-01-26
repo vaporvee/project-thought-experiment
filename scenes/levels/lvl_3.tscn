@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4ofkr6mkwh6b"]
+
+[ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_o2dcb"]
+[ext_resource type="Material" uid="uid://1w6e5sx6poff" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare.material" id="2_35w8n"]
+[ext_resource type="Material" uid="uid://du8w0x0kmgjui" path="res://assets/textures/material/bricks/bricks.tres" id="3_ots23"]
+[ext_resource type="Material" uid="uid://bg5hb1744y4ik" path="res://assets/textures/material/planks/planks.material" id="4_6h3ie"]
+[ext_resource type="Material" uid="uid://c6rvbga7g5f4l" path="res://assets/textures/material/tiles_white/tiles_white.material" id="5_kpr5l"]
+[ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="6_6mqu6"]
+[ext_resource type="PackedScene" uid="uid://ced2w03t8er5k" path="res://scenes/objects/physics_objects/cube.tscn" id="10_7eyfc"]
+[ext_resource type="PackedScene" uid="uid://d2rmg0r1hircj" path="res://scenes/level_finish_area.tscn" id="20_andv2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thqbu"]
+
+[node name="LVL1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.707107, -4.21468e-08, -0.5, -0.5, 0.707107, -0.5, -0.5, -0.707107, 0, 0, 0)
+directional_shadow_blend_splits = true
+sky_mode = 1
+
+[node name="interior" parent="." instance=ExtResource("1_o2dcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Ground1" parent="interior" index="0"]
+surface_material_override/0 = ExtResource("2_35w8n")
+
+[node name="StaticBody3D" parent="interior/Ground1" index="0"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Walls2" parent="interior" index="1"]
+surface_material_override/0 = ExtResource("3_ots23")
+
+[node name="StaticBody3D" parent="interior/Walls2" index="0"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Ground2" parent="interior" index="2"]
+surface_material_override/0 = ExtResource("4_6h3ie")
+
+[node name="StaticBody3D" parent="interior/Ground2" index="0"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Walls1" parent="interior" index="3"]
+surface_material_override/0 = ExtResource("5_kpr5l")
+
+[node name="StaticBody3D" parent="interior/Walls1" index="0"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Ceiling" parent="interior" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_thqbu")
+
+[node name="StaticBody3D" parent="interior/Ceiling" index="0"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Player" parent="." instance=ExtResource("6_6mqu6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.7209)
+
+[node name="Cube" parent="." instance=ExtResource("10_7eyfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
+
+[node name="Area3D" parent="." instance=ExtResource("20_andv2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.318473, 2, 10.63)
+
+[editable path="interior"]
