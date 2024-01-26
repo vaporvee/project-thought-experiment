@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7edty4cpgbab"
 path.s3tc="res://.godot/imported/office_chair_rough.png-d2b50bb09dce7f8b156711bdfe83cbd8.s3tc.ctex"
+path.etc2="res://.godot/imported/office_chair_rough.png-d2b50bb09dce7f8b156711bdfe83cbd8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/material/office_chair/office_chair_rough.png"
-dest_files=["res://.godot/imported/office_chair_rough.png-d2b50bb09dce7f8b156711bdfe83cbd8.s3tc.ctex"]
+dest_files=["res://.godot/imported/office_chair_rough.png-d2b50bb09dce7f8b156711bdfe83cbd8.s3tc.ctex", "res://.godot/imported/office_chair_rough.png-d2b50bb09dce7f8b156711bdfe83cbd8.etc2.ctex"]
 
 [params]
 

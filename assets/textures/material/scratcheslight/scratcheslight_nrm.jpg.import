@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3dolqycw3mpv"
 path.s3tc="res://.godot/imported/scratcheslight_nrm.jpg-18fa429a360cced79d3be2adbdd7724a.s3tc.ctex"
+path.etc2="res://.godot/imported/scratcheslight_nrm.jpg-18fa429a360cced79d3be2adbdd7724a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/material/scratcheslight/scratcheslight_nrm.jpg"
-dest_files=["res://.godot/imported/scratcheslight_nrm.jpg-18fa429a360cced79d3be2adbdd7724a.s3tc.ctex"]
+dest_files=["res://.godot/imported/scratcheslight_nrm.jpg-18fa429a360cced79d3be2adbdd7724a.s3tc.ctex", "res://.godot/imported/scratcheslight_nrm.jpg-18fa429a360cced79d3be2adbdd7724a.etc2.ctex"]
 
 [params]
 

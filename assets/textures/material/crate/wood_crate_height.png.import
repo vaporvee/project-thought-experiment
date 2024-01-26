@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://p27mlc7rlulu"
 path.s3tc="res://.godot/imported/wood_crate_height.png-44bc6a8f76e31aa36904d1cec6a59773.s3tc.ctex"
+path.etc2="res://.godot/imported/wood_crate_height.png-44bc6a8f76e31aa36904d1cec6a59773.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/material/crate/wood_crate_height.png"
-dest_files=["res://.godot/imported/wood_crate_height.png-44bc6a8f76e31aa36904d1cec6a59773.s3tc.ctex"]
+dest_files=["res://.godot/imported/wood_crate_height.png-44bc6a8f76e31aa36904d1cec6a59773.s3tc.ctex", "res://.godot/imported/wood_crate_height.png-44bc6a8f76e31aa36904d1cec6a59773.etc2.ctex"]
 
 [params]
 

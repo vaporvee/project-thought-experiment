@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc8qr2ymy1rtf"
 path.s3tc="res://.godot/imported/paintedplaster_color.png-6071493653048adc817e65532b297035.s3tc.ctex"
+path.etc2="res://.godot/imported/paintedplaster_color.png-6071493653048adc817e65532b297035.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/material/paintedplaster/paintedplaster_color.png"
-dest_files=["res://.godot/imported/paintedplaster_color.png-6071493653048adc817e65532b297035.s3tc.ctex"]
+dest_files=["res://.godot/imported/paintedplaster_color.png-6071493653048adc817e65532b297035.s3tc.ctex", "res://.godot/imported/paintedplaster_color.png-6071493653048adc817e65532b297035.etc2.ctex"]
 
 [params]
 

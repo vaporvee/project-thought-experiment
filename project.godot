@@ -128,6 +128,7 @@ fullscreen={
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 textures/lossless_compression/force_png=true
 shader_compiler/shader_cache/enabled=false
 global_illumination/gi/use_half_resolution=true

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg8mbnuh8rvw6"
 path.s3tc="res://.godot/imported/gray_bricks_ambientocclusion.png-fda32c4103078051c35130465c82f0e3.s3tc.ctex"
+path.etc2="res://.godot/imported/gray_bricks_ambientocclusion.png-fda32c4103078051c35130465c82f0e3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/material/gray_bricks/gray_bricks_ambientocclusion.png"
-dest_files=["res://.godot/imported/gray_bricks_ambientocclusion.png-fda32c4103078051c35130465c82f0e3.s3tc.ctex"]
+dest_files=["res://.godot/imported/gray_bricks_ambientocclusion.png-fda32c4103078051c35130465c82f0e3.s3tc.ctex", "res://.godot/imported/gray_bricks_ambientocclusion.png-fda32c4103078051c35130465c82f0e3.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://csvikiyxlaknd"
 path.s3tc="res://.godot/imported/paintedplaster_roughness.png-fdaed1b82c5b68a07f5feabb68078e8c.s3tc.ctex"
+path.etc2="res://.godot/imported/paintedplaster_roughness.png-fdaed1b82c5b68a07f5feabb68078e8c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/material/paintedplaster/paintedplaster_roughness.png"
-dest_files=["res://.godot/imported/paintedplaster_roughness.png-fdaed1b82c5b68a07f5feabb68078e8c.s3tc.ctex"]
+dest_files=["res://.godot/imported/paintedplaster_roughness.png-fdaed1b82c5b68a07f5feabb68078e8c.s3tc.ctex", "res://.godot/imported/paintedplaster_roughness.png-fdaed1b82c5b68a07f5feabb68078e8c.etc2.ctex"]
 
 [params]
 

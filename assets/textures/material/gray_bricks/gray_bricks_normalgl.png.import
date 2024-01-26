@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://df7gaqplas6rc"
 path.s3tc="res://.godot/imported/gray_bricks_normalgl.png-f7941e840649da2840a76c2077182f40.s3tc.ctex"
+path.etc2="res://.godot/imported/gray_bricks_normalgl.png-f7941e840649da2840a76c2077182f40.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/material/gray_bricks/gray_bricks_normalgl.png"
-dest_files=["res://.godot/imported/gray_bricks_normalgl.png-f7941e840649da2840a76c2077182f40.s3tc.ctex"]
+dest_files=["res://.godot/imported/gray_bricks_normalgl.png-f7941e840649da2840a76c2077182f40.s3tc.ctex", "res://.godot/imported/gray_bricks_normalgl.png-f7941e840649da2840a76c2077182f40.etc2.ctex"]
 
 [params]
 
