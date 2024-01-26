@@ -1,8 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://ckad8stc13n83"]
+[gd_scene load_steps=30 format=3 uid="uid://ckad8stc13n83"]
 
 [ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_xs30l"]
 [ext_resource type="Material" uid="uid://1w6e5sx6poff" path="res://assets/textures/material/tilesslatesquare/tilesslatesquare.material" id="2_evxh1"]
+[ext_resource type="Material" uid="uid://du8w0x0kmgjui" path="res://assets/textures/material/bricks/bricks.tres" id="3_b6ww3"]
+[ext_resource type="Material" uid="uid://bg5hb1744y4ik" path="res://assets/textures/material/planks/planks.material" id="4_lyce0"]
 [ext_resource type="Material" uid="uid://c6rvbga7g5f4l" path="res://assets/textures/material/tiles_white/tiles_white.material" id="7_nrt8m"]
+[ext_resource type="Material" uid="uid://bpaoho76mro65" path="res://assets/textures/material/crate/crate2.material" id="9_icmwj"]
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="11_lls6p"]
 [ext_resource type="PackedScene" uid="uid://22blfybi6n4q" path="res://scenes/objects/completion_counter.tscn" id="12_vn8j0"]
 [ext_resource type="PackedScene" uid="uid://cy0x2nliyw8gw" path="res://scenes/objects/door.tscn" id="13_fhdru"]
@@ -15,9 +18,13 @@
 [ext_resource type="Script" path="res://scripts/voiceline_resource.gd" id="18_jxpoe"]
 [ext_resource type="AudioStream" uid="uid://bi1rf1hi2fm2r" path="res://assets/audio/voicelines/anouncer_intro_02.ogg" id="19_2roq0"]
 [ext_resource type="AudioStream" uid="uid://rg20ayxe5m75" path="res://assets/audio/voicelines/anouncer_intro_03.ogg" id="20_dqpxk"]
+[ext_resource type="PackedScene" uid="uid://d2rmg0r1hircj" path="res://scenes/level_finish_area.tscn" id="20_tt84f"]
 [ext_resource type="AudioStream" uid="uid://ddpvabd43s3p4" path="res://assets/audio/voicelines/anouncer_intro_04.ogg" id="21_n11nj"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thqbu"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_wyr1d"]
+material = ExtResource("9_icmwj")
 size = Vector3(4, 0.2, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lygjd"]
@@ -64,14 +71,27 @@ sky_mode = 1
 [node name="interior" parent="." instance=ExtResource("1_xs30l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="Hallway" parent="interior" index="0"]
+[node name="Ground1" parent="interior" index="0"]
 surface_material_override/0 = ExtResource("2_evxh1")
 
-[node name="Room" parent="interior" index="1"]
+[node name="Walls2" parent="interior" index="1"]
+surface_material_override/0 = ExtResource("3_b6ww3")
+
+[node name="Ground2" parent="interior" index="2"]
+surface_material_override/0 = ExtResource("4_lyce0")
+
+[node name="Walls1" parent="interior" index="3"]
 surface_material_override/0 = ExtResource("7_nrt8m")
 
+[node name="Ceiling" parent="interior" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_thqbu")
+
+[node name="StaticBody3D" parent="interior/Ceiling" index="0"]
+collision_layer = 7
+collision_mask = 7
+
 [node name="Player" parent="." instance=ExtResource("11_lls6p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.7209)
 
 [node name="CompletionCounter" parent="." node_paths=PackedStringArray("nodes_needed") instance=ExtResource("12_vn8j0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0617981, 3.08507, 6.31598)
@@ -84,7 +104,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0536218, 1.48562, 6.64)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.038, 0.65, 4)
 
 [node name="ButtonStand3" parent="." instance=ExtResource("14_mpdbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4.65, 0.043)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.65, 0.043)
 
 [node name="Cube" parent="." instance=ExtResource("15_40os8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
@@ -96,7 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.51, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1968, 0.51, 0)
 
 [node name="Plane" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 4, 0)
 collision_layer = 7
 collision_mask = 7
 
@@ -112,6 +132,9 @@ voice_lines = Array[ExtResource("18_jxpoe")]([SubResource("Resource_u3j5u"), Sub
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 6)
+
+[node name="Area3D" parent="." instance=ExtResource("20_tt84f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.318473, 2, 10.63)
 
 [connection signal="lock" from="CompletionCounter" to="Door" method="close"]
 [connection signal="unlock" from="CompletionCounter" to="Door" method="open"]

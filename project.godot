@@ -21,6 +21,7 @@ config/icon="res://assets/textures/gui/pte_icon.svg"
 [autoload]
 
 WindowManager="*res://scripts/autoloads/window_manager.gd"
+LevelManager="*res://scenes/autoloads/level_manager.tscn"
 
 [display]
 
@@ -33,7 +34,7 @@ window/size/mode.release=4
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/destruction/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -127,8 +128,11 @@ fullscreen={
 
 [rendering]
 
-anti_aliasing/quality/screen_space_aa=1
-anti_aliasing/quality/use_taa=true
+textures/lossless_compression/force_png=true
+shader_compiler/shader_cache/enabled=false
+global_illumination/gi/use_half_resolution=true
+shading/overrides/force_vertex_shading=true
+environment/ssao/quality=1
 occlusion_culling/use_occlusion_culling=true
 environment/defaults/default_environment="res://resources/environment.tres"
 environment/defaults/default_clear_color.release=Color(0, 0, 0, 1)

@@ -8,6 +8,33 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_pejvk"]
 size = Vector3(1.5, 3, 0.2)
 
+[sub_resource type="Animation" id="Animation_3fs6g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D2/Handle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.349066, 1.5708, -1.5708)]
+}
+
 [sub_resource type="Animation" id="Animation_1220n"]
 resource_name = "open"
 length = 0.5
@@ -36,33 +63,6 @@ tracks/1/keys = {
 "values": [Vector3(0.349066, 1.5708, -1.5708), Vector3(5.93412, 1.5708, -1.5708)]
 }
 
-[sub_resource type="Animation" id="Animation_3fs6g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D2/Handle:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.349066, 1.5708, -1.5708)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5xgbb"]
 _data = {
 "RESET": SubResource("Animation_3fs6g"),
@@ -86,7 +86,7 @@ collision_mask = 3
 shape = SubResource("BoxShape3D_pejvk")
 
 [node name="Handle" type="MeshInstance3D" parent="MeshInstance3D2"]
-transform = Transform3D(-0.456027, -1.17323e-07, 1.25292, -1.25292, -8.21505e-08, -0.456027, 7.82154e-08, -2, -5.4767e-08, -0.757807, -0.445, -0.399)
+transform = Transform3D(-0.456026, -9.7162e-06, 1.25292, -1.25292, -6.80336e-06, -0.456026, 6.47745e-06, -2, -4.53556e-06, -0.757807, -0.445, -0.399)
 mesh = ExtResource("4_frcys")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_ti6vs")

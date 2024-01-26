@@ -8,3 +8,7 @@ func _on_main_menu_pressed() -> void:
 	hide()
 	WindowManager.pause_menu.hide()
 	get_tree().change_scene_to_file("res://scenes/gui/menus/main_menu.tscn")
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		hide()

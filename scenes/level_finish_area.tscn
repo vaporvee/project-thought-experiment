@@ -1,179 +1,35 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2rmg0r1hircj"]
+[gd_scene load_steps=5 format=3 uid="uid://d2rmg0r1hircj"]
+
+[ext_resource type="Script" path="res://scripts/level_finish_area.gd" id="1_cfjpp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_urlb8"]
+size = Vector3(11, 7, 1)
 
-[sub_resource type="Shader" id="Shader_kkxwe"]
-code = "shader_type spatial;
-//Simple 3D shader to create a force-field effect inspired by Faultless Defense from Guilty Gear Xrd.
-//In summary, it takes logic used for simple rim lighting and uses it to create the alpha instead.
+[sub_resource type="QuadMesh" id="QuadMesh_hjut0"]
+flip_faces = true
+size = Vector2(4, 4)
 
-render_mode blend_mix,depth_draw_always,cull_back,diffuse_burley,specular_schlick_ggx;//depth_test_disable;
-uniform vec4 albedo : hint_color;
-uniform vec4 emission_color : hint_color;
-uniform sampler2D texture_albedo : hint_albedo;
-uniform float emission_amount: hint_range(0.0, 16.0) = 5.0f; 
-uniform float rim_steepness : hint_range(0.0f, 16.0f) = 3.0f; //higher values mean a smaller rim.
-uniform vec3 uv_scale;
-uniform vec3 uv_offset;
-
-
-void vertex() {
-	UV=UV*uv_scale.xy+uv_offset.xy;
-}
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	EMISSION = emission_color.rgb * emission_amount;
-	float PI = 3.14159265359;
-	float NdotV = dot(NORMAL, VIEW);
-	float rim_light = pow(1.0 - NdotV, rim_steepness);
-	ALPHA = rim_light * emission_color.a / PI;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xe3kp"]
-render_priority = 0
-shader = SubResource("Shader_kkxwe")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_u64vp"]
-material = SubResource("ShaderMaterial_xe3kp")
-
-[sub_resource type="Shader" id="Shader_6md8p"]
-code = "shader_type canvas_item;
-
-const float REPEAT = 5.0;
-
-mat2 rot(float a) {
-	float c = cos(a), s = sin(a);
-	return mat2(vec2(c,s),vec2(-s,c));
-}
-
-float sdBox( vec3 p, vec3 b )
-{
-	vec3 q = abs(p) - b;
-	return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
-}
-
-float box(vec3 pos, float scale) {
-	pos *= scale;
-	float base = sdBox(pos, vec3(.4,.4,.1)) /1.5;
-	pos.xy *= 5.;
-	pos.y -= 3.5;
-	pos.xy *= rot(.75);
-	float result = -base;
-	return result;
-}
-
-float box_set(vec3 pos, float iTime,float gTime) {
-	vec3 pos_origin = pos;
-	pos = pos_origin;
-	pos .y += sin(gTime * 0.4) * 2.5;
-	pos.xy *=   rot(.8);
-	float box1 = box(pos,2. - abs(sin(gTime * 0.4)) * 1.5);
-	pos = pos_origin;
-	pos .y -=sin(gTime * 0.4) * 2.5;
-	pos.xy *=   rot(.8);
-	float box2 = box(pos,2. - abs(sin(gTime * 0.4)) * 1.5);
-	pos = pos_origin;
-	pos .x +=sin(gTime * 0.4) * 2.5;
-	pos.xy *=   rot(.8);
-	float box3 = box(pos,2. - abs(sin(gTime * 0.4)) * 1.5);	
-	pos = pos_origin;
-	pos .x -=sin(gTime * 0.4) * 2.5;
-	pos.xy *=   rot(.8);
-	float box4 = box(pos,2. - abs(sin(gTime * 0.4)) * 1.5);	
-	pos = pos_origin;
-	pos.xy *=   rot(.8);
-	float box5 = box(pos,.5) * 6.;	
-	pos = pos_origin;
-	float box6 = box(pos,.5) * 6.;	
-	float result = max(max(max(max(max(box1,box2),box3),box4),box5),box6);
-	return result;
-}
-
-float map(vec3 pos, float iTime, float gTime) {
-	vec3 pos_origin = pos;
-	float box_set1 = box_set(pos, iTime, gTime);
-
-	return box_set1;
-}
-
-void fragment() {
-	vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
-	float iTime = TIME;
-	float gTime = 0.0;
-	vec2 p = (FRAGCOORD.xy * 2. - iResolution.xy) / min(iResolution.x, iResolution.y);
-	vec3 ro = vec3(0., -0.2 ,iTime * 4.);
-	vec3 ray = normalize(vec3(p, 1.5));
-	ray.xy = ray.xy * rot(sin(iTime * .03) * 5.);
-	ray.yz = ray.yz * rot(sin(iTime * .05) * .2);
-	float t = 0.1;
-	vec3 col = vec3(0.);
-	float ac = 0.0;
-
-
-	for (int i = 0; i < 99; i++){
-		vec3 pos = ro + ray * t;
-		pos = mod(pos-2., 4.) -2.;
-		gTime = iTime -float(i) * 0.01;
-		
-		float d = map(pos, iTime, gTime);
-
-		d = max(abs(d), 0.01);
-		ac += exp(-d*23.);
-
-		t += d* 0.55;
-	}
-
-	col = vec3(ac * 0.02);
-
-	col +=vec3(0.,0.2 * abs(sin(iTime)),0.5 + sin(iTime) * 0.2);
-
-
-	COLOR = vec4(col ,1.0 - t * (0.02 + 0.02 * sin (iTime)));
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hw5y5"]
-shader = SubResource("Shader_6md8p")
-
-[sub_resource type="LabelSettings" id="LabelSettings_p3ds8"]
-font_size = 48
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iaevn"]
+albedo_color = Color(0, 1, 0.266667, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 3.0
 
 [node name="Area3D" type="Area3D"]
+script = ExtResource("1_cfjpp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.153507)
 shape = SubResource("BoxShape3D_urlb8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_u64vp")
+mesh = SubResource("QuadMesh_hjut0")
+surface_material_override/0 = SubResource("StandardMaterial3D_iaevn")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.524372)
+billboard = 2
+text = "Nächstes Level"
+font_size = 48
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Shader" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_hw5y5")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -78.0
-offset_right = 789.0
-offset_bottom = -18.0
-grow_vertical = 0
-text = "Keine Panik! Die Simulation lädt..."
-label_settings = SubResource("LabelSettings_p3ds8")
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

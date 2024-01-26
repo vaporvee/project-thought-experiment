@@ -1,12 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://c17x7kmjmqdk3"]
+[gd_scene load_steps=16 format=3 uid="uid://c17x7kmjmqdk3"]
 
-[ext_resource type="PackedScene" uid="uid://ddwkhfly2xyyt" path="res://assets/models/interior.obj" id="1_yhnvx"]
-[ext_resource type="Material" uid="uid://bg5hb1744y4ik" path="res://assets/textures/material/planks/planks.material" id="2_58abf"]
-[ext_resource type="Material" uid="uid://du8w0x0kmgjui" path="res://assets/textures/material/bricks/bricks.tres" id="3_dimow"]
+[ext_resource type="PackedScene" uid="uid://cbb37i3xvtp50" path="res://assets/models/interior2.obj" id="3_wurqx"]
+[ext_resource type="Texture2D" uid="uid://dsn5u1ymp1eki" path="res://assets/textures/material/concrete/concrete_color.png" id="4_1qe3t"]
 [ext_resource type="PackedScene" uid="uid://gg5ph541e4p3" path="res://scenes/player.tscn" id="4_s0xrk"]
+[ext_resource type="Material" uid="uid://dc07mg6jyhsq6" path="res://assets/textures/material/gray_bricks/gray_bricks.material" id="4_wsys7"]
+[ext_resource type="Texture2D" uid="uid://dgp24icxy8biu" path="res://assets/textures/material/concrete/concrete_ambientocclusion.png" id="5_2hu3x"]
+[ext_resource type="Material" uid="uid://c3qgfnlx7ik2n" path="res://assets/textures/material/paintedplaster/paintedplaster.material" id="5_dye2r"]
 [ext_resource type="PackedScene" uid="uid://bk4h14lkwp04a" path="res://scenes/objects/furniture/desk.tscn" id="5_u4bki"]
+[ext_resource type="Texture2D" uid="uid://dh5k61ko53gn6" path="res://assets/textures/material/concrete/concrete_normalgl.png" id="6_h1os3"]
 [ext_resource type="PackedScene" uid="uid://ced2w03t8er5k" path="res://scenes/objects/physics_objects/cube.tscn" id="6_ndtyp"]
-[ext_resource type="PackedScene" uid="uid://y7mgnooudpqv" path="res://scenes/objects/physics_objects/vent.tscn" id="7_r3yjb"]
+[ext_resource type="Texture2D" uid="uid://b230m11b62rk4" path="res://assets/textures/material/concrete/concrete_roughness.png" id="7_pqq8x"]
+[ext_resource type="PackedScene" uid="uid://jtb3abokylwq" path="res://scenes/objects/physics_objects/keyboard_mouse.tscn" id="11_58enu"]
+[ext_resource type="PackedScene" uid="uid://ryumwinqbqgr" path="res://scenes/objects/physics_objects/computer_screen.tscn" id="12_djkgb"]
+[ext_resource type="PackedScene" uid="uid://idxtvhvxccgl" path="res://scenes/objects/physics_objects/bottle.tscn" id="14_8trno"]
+[ext_resource type="PackedScene" uid="uid://d2rmg0r1hircj" path="res://scenes/level_finish_area.tscn" id="15_0vmxp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f4qa"]
+albedo_texture = ExtResource("4_1qe3t")
+roughness_texture = ExtResource("7_pqq8x")
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("6_h1os3")
+ao_enabled = true
+ao_texture = ExtResource("5_2hu3x")
+uv1_scale = Vector3(8.5, 8.5, 8.5)
 
 [node name="LVL1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
@@ -16,28 +33,71 @@ transform = Transform3D(0.707107, -0.707107, -4.21468e-08, -0.5, -0.5, 0.707107,
 directional_shadow_blend_splits = true
 sky_mode = 1
 
-[node name="interior" parent="." instance=ExtResource("1_yhnvx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-
-[node name="Hallway" parent="interior" index="0"]
-surface_material_override/0 = ExtResource("2_58abf")
-
-[node name="Room" parent="interior" index="1"]
-surface_material_override/0 = ExtResource("3_dimow")
-
 [node name="Player" parent="." instance=ExtResource("4_s0xrk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.23956)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 6)
-
-[node name="Desk" parent="." instance=ExtResource("5_u4bki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.64074, 1, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, -21.1122)
 
 [node name="Cube" parent="." instance=ExtResource("6_ndtyp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.920002, 0.15612, 1.95953)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.37859, 0.15612, 2.35514)
+freeze = true
 
-[node name="Vent" parent="." instance=ExtResource("7_r3yjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.54621, 2.315, -3.06745)
+[node name="interior2" parent="." instance=ExtResource("3_wurqx")]
 
-[editable path="interior"]
+[node name="Walls1" parent="interior2" index="0"]
+surface_material_override/0 = ExtResource("4_wsys7")
+
+[node name="Walls2" parent="interior2" index="1"]
+surface_material_override/0 = ExtResource("5_dye2r")
+
+[node name="Ground" parent="interior2" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6f4qa")
+
+[node name="Desk" parent="." instance=ExtResource("5_u4bki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.497, 1.25, -20.898)
+
+[node name="Cube2" parent="." instance=ExtResource("11_58enu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0851, 1.33987, -21.5152)
+
+[node name="ComputerScreen" parent="." instance=ExtResource("12_djkgb")]
+transform = Transform3D(-0.176775, -0.0764619, 0.981277, -0.0818855, 0.994664, 0.0627536, -0.980839, -0.0692591, -0.182093, 16.7956, 1.99061, -21.4736)
+
+[node name="Desk2" parent="." instance=ExtResource("5_u4bki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.497, 1.25, -16.1503)
+
+[node name="Cube3" parent="." instance=ExtResource("11_58enu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0851, 1.33987, -16.7675)
+
+[node name="ComputerScreen2" parent="." instance=ExtResource("12_djkgb")]
+transform = Transform3D(-0.305014, 0, 0.952348, 0, 1, 0, -0.952348, 0, -0.305014, 16.7956, 1.99061, -16.7259)
+
+[node name="Desk3" parent="." instance=ExtResource("5_u4bki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2247, 1.25, -7.9819)
+
+[node name="Cube4" parent="." instance=ExtResource("11_58enu")]
+transform = Transform3D(0.98423, 0, 0.176896, 0, 1, 0, -0.176896, 0, 0.98423, 15.8128, 1.33987, -8.59911)
+
+[node name="ComputerScreen3" parent="." instance=ExtResource("12_djkgb")]
+transform = Transform3D(0.104667, 0, 0.994507, 0, 1, 0, -0.994507, 0, 0.104667, 16.5233, 1.99061, -8.55754)
+
+[node name="Desk4" parent="." instance=ExtResource("5_u4bki")]
+transform = Transform3D(0.963821, 0, -0.266549, 0, 1, 0, 0.266549, 0, 0.963821, 16.286, 1.25, -11.7658)
+
+[node name="Cube5" parent="." instance=ExtResource("11_58enu")]
+transform = Transform3D(0.963821, 0, -0.266549, 0, 1, 0, 0.266549, 0, 0.963821, 16.0536, 1.33987, -12.4705)
+
+[node name="ComputerScreen4" parent="." instance=ExtResource("12_djkgb")]
+transform = Transform3D(0.119617, 0, 0.99282, 0, 1, 0, -0.99282, 0, 0.119617, 16.7273, 1.99061, -12.241)
+
+[node name="Cube6" parent="." instance=ExtResource("14_8trno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6955, 1.42305, -15.217)
+
+[node name="Area3D" parent="." instance=ExtResource("15_0vmxp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.431601, 1.81218, 19.1515)
+
+[node name="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, 0.0964928)
+
+[node name="MeshInstance3D" parent="Area3D" index="1"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0.951174)
+
+[editable path="interior2"]
+[editable path="Area3D"]

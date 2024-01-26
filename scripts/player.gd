@@ -28,6 +28,10 @@ func _ready() -> void:
 	WindowManager.pause_menu.continued.connect(capture)
 
 func _physics_process(delta: float) -> void:
+	if position.y < -33:
+		$GameOver.show()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		get_tree().paused = true
 	gun_cam.transform = camera.transform
 	
 	if not is_on_floor():

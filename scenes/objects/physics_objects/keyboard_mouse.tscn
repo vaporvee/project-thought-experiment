@@ -11,7 +11,7 @@ absorbent = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
 size = Vector3(0.276, 0.04, 0.7)
 
-[node name="Cube" type="RigidBody3D" groups=["pushables"]]
+[node name="KeyboardMouse" type="RigidBody3D" groups=["pushables"]]
 collision_priority = 2.0
 mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_rff84")

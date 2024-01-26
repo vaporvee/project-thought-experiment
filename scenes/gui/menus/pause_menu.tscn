@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/menus/pause_menu.gd" id="1_e70hy"]
 
-[sub_resource type="Shader" id="Shader_1tfvw"]
+[sub_resource type="Shader" id="Shader_y0jqs"]
 code = "shader_type canvas_item;
 
 uniform float blur_amount : hint_range(0, 5);
@@ -13,7 +13,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxx1r"]
-shader = SubResource("Shader_1tfvw")
+shader = SubResource("Shader_y0jqs")
 shader_parameter/blur_amount = 2.0
 
 [node name="PauseMenu" type="CanvasLayer"]

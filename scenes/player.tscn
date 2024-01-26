@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://gg5ph541e4p3"]
+[gd_scene load_steps=20 format=3 uid="uid://gg5ph541e4p3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8d33x"]
 [ext_resource type="PackedScene" uid="uid://cl6gw3huejnrl" path="res://scenes/gravity_gun.tscn" id="2_ahuce"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cugjcjiiq2xvo" path="res://assets/audio/footsteps/step1.wav" id="8_kxd2q"]
 [ext_resource type="AudioStream" uid="uid://d112eqcmac840" path="res://assets/audio/footsteps/step2.wav" id="9_4mctc"]
 [ext_resource type="AudioStream" uid="uid://cf87vn2hrh7u8" path="res://assets/audio/footsteps/land.wav" id="10_n3ln3"]
+[ext_resource type="PackedScene" uid="uid://ceq785h1fcvq" path="res://scenes/gui/menus/game_over.tscn" id="11_0dlqh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2qx4s"]
 radius = 0.4
@@ -92,6 +93,9 @@ wait_time = 0.4
 [node name="FootSteps" type="AudioStreamPlayer" parent="."]
 script = ExtResource("5_t1bvf")
 audio_library = Array[ExtResource("6_4revs")]([SubResource("Resource_n8h0v"), SubResource("Resource_a4b4g"), SubResource("Resource_yjl6f"), SubResource("Resource_qe4pm")])
+
+[node name="GameOver" parent="." instance=ExtResource("11_0dlqh")]
+visible = false
 
 [connection signal="timeout" from="FootStepTimer" to="." method="_on_foot_step_timer_timeout"]
 

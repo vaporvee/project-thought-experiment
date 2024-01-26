@@ -7,14 +7,14 @@ var fullscreen: bool
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	close_request_window = preload("res://scenes/close_game_confirmation.tscn").instantiate()
+	close_request_window = preload("res://scenes/gui/menus/close_game_confirmation.tscn").instantiate()
 	add_child(close_request_window)
 	pause_menu = preload("res://scenes/gui/menus/pause_menu.tscn").instantiate()
 	add_child(pause_menu)
 	
 	fullscreen = DisplayServer.window_get_mode() == 4
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_released("fullscreen"):
 		fullscreen = !fullscreen
 		toggle_fullscreen()

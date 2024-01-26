@@ -31,19 +31,24 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Hallway": {
+"PATH:Ceiling": {
 "generate/physics": true,
-"physics/layer": 7,
-"physics/mask": 7,
 "physics/shape_type": 2
 },
-"PATH:Room": {
-"decomposition/mode": 1,
-"decomposition/normalize_mesh": true,
-"decomposition/precision": 10,
+"PATH:Ground1": {
 "generate/physics": true,
-"physics/layer": 7,
-"physics/mask": 7,
+"physics/shape_type": 2
+},
+"PATH:Ground2": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:Walls1": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:Walls2": {
+"generate/physics": true,
 "physics/shape_type": 2
 }
 }
