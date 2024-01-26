@@ -7,8 +7,7 @@ func _ready() -> void:
 	LevelManager.level_pointer = 0
 
 func _on_start_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/lvl_1.tscn")
-
+	LevelManager.next_level()
 
 func _on_quit_game_pressed() -> void:
 	get_tree().quit()

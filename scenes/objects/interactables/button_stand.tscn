@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqy8bqf1chm8c"]
+[gd_scene load_steps=17 format=3 uid="uid://dqy8bqf1chm8c"]
 
 [ext_resource type="PackedScene" uid="uid://dm8l36ephydnl" path="res://scenes/objects/interaction_area.tscn" id="1_0okd0"]
 [ext_resource type="Script" path="res://scripts/interactables/completer/button_stand.gd" id="1_gkcm2"]
 [ext_resource type="ArrayMesh" uid="uid://bjiycdbug2bd3" path="res://assets/models/button_stand.obj" id="2_0tsnx"]
 [ext_resource type="Material" uid="uid://cxjgare3kcbtl" path="res://assets/materials/dark_metal2.material" id="3_u47pc"]
 [ext_resource type="Material" uid="uid://df88ryv5mvkg0" path="res://assets/textures/material/metal/metal_red.material" id="4_sck5v"]
+[ext_resource type="Script" path="res://scripts/sound_effect_3d.gd" id="6_vwtv2"]
+[ext_resource type="AudioStream" uid="uid://dlqy1pvffxmpq" path="res://assets/audio/interactions/button_down.wav" id="7_brmv4"]
+[ext_resource type="Script" path="res://scripts/soundeffect_resource.gd" id="8_62har"]
+[ext_resource type="AudioStream" uid="uid://c4xw0cimkin7x" path="res://assets/audio/interactions/button_up.wav" id="9_pbk3w"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jpuiw"]
 height = 1.45
@@ -53,6 +57,16 @@ _data = {
 "press": SubResource("Animation_stg1c")
 }
 
+[sub_resource type="Resource" id="Resource_x4t53"]
+script = ExtResource("8_62har")
+key = "down"
+audio = ExtResource("7_brmv4")
+
+[sub_resource type="Resource" id="Resource_n3yxo"]
+script = ExtResource("8_62har")
+key = "up"
+audio = ExtResource("9_pbk3w")
+
 [node name="ButtonStand" type="StaticBody3D"]
 collision_layer = 7
 collision_mask = 7
@@ -83,5 +97,9 @@ libraries = {
 
 [node name="InteractionArea" parent="." instance=ExtResource("1_0okd0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+
+[node name="SoundEffect3D" type="AudioStreamPlayer3D" parent="."]
+script = ExtResource("6_vwtv2")
+audio_library = Array[ExtResource("8_62har")]([SubResource("Resource_x4t53"), SubResource("Resource_n3yxo")])
 
 [connection signal="interacted" from="InteractionArea" to="." method="_on_interaction_area_interacted"]

@@ -1,5 +1,7 @@
 extends Node
 
+signal level_switched
+
 @onready var transition: CanvasLayer = $Transition
 
 @export var levels: Array[PackedScene]
@@ -12,17 +14,19 @@ func  _ready() -> void:
 	progress_save.load(PROGRESS_SAVE_PATH)
 
 func next_level() -> void:
-	level_pointer += 1
 	if level_pointer < levels.size():
 		transition.show()
 		get_tree().paused = true
 		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_packed(levels[level_pointer])
 		await get_tree().create_timer(2).timeout
+		level_switched.emit()
 		get_tree().paused = false
 		transition.hide()
 	else:
 		get_tree().change_scene_to_file("res://scenes/gui/menus/game_finished.tscn")
+		level_switched.emit()
+	level_pointer += 1
 
 func start_last_level() -> void:
 	pass

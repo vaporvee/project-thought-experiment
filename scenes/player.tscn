@@ -91,6 +91,7 @@ player = NodePath("..")
 wait_time = 0.4
 
 [node name="FootSteps" type="AudioStreamPlayer" parent="."]
+bus = &"Sound Effects"
 script = ExtResource("5_t1bvf")
 audio_library = Array[ExtResource("6_4revs")]([SubResource("Resource_n8h0v"), SubResource("Resource_a4b4g"), SubResource("Resource_yjl6f"), SubResource("Resource_qe4pm")])
 pitch_variation = 0.3

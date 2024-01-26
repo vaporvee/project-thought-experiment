@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ceq785h1fcvq"]
 
-[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_oydw2"]
+[ext_resource type="Script" path="res://scripts/menus/game_over.gd" id="1_oydw2"]
 [ext_resource type="FontFile" uid="uid://cr7a85ntk0t0k" path="res://assets/fonts/spacegrotesk_bold.ttf" id="2_1rhse"]
 
 [sub_resource type="Shader" id="Shader_1tfvw"]

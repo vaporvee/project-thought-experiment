@@ -1,0 +1,25 @@
+[gd_scene load_steps=8 format=3 uid="uid://d05ijxjrvveav"]
+
+[ext_resource type="Script" path="res://scripts/autoloads/music_manager.gd" id="1_y5orj"]
+[ext_resource type="Script" path="res://scripts/sound_effect.gd" id="2_b3vke"]
+[ext_resource type="AudioStream" uid="uid://58phpeni4qge" path="res://assets/audio/music/theturtlebox_home-main_menu.wav" id="3_fvdep"]
+[ext_resource type="Script" path="res://scripts/soundeffect_resource.gd" id="4_g5rbb"]
+[ext_resource type="AudioStream" uid="uid://c2odo0ydvqrp5" path="res://assets/audio/music/theturtlebox_thought-lvl_1.wav" id="5_nktif"]
+
+[sub_resource type="Resource" id="Resource_6qbpn"]
+script = ExtResource("4_g5rbb")
+key = "main"
+audio = ExtResource("3_fvdep")
+
+[sub_resource type="Resource" id="Resource_k4uy8"]
+script = ExtResource("4_g5rbb")
+key = "lvl1"
+audio = ExtResource("5_nktif")
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_y5orj")
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+script = ExtResource("2_b3vke")
+audio_library = Array[ExtResource("4_g5rbb")]([SubResource("Resource_6qbpn"), SubResource("Resource_k4uy8")])

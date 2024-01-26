@@ -42,7 +42,7 @@ func uncapture_mouse() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") && !get_tree().current_scene is MainMenu:
 		show_pause_menu()
 
 func toggle_fullscreen() -> void:

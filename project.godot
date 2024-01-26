@@ -23,6 +23,7 @@ config/icon="res://assets/textures/gui/pte_icon.svg"
 WindowManager="*res://scripts/autoloads/window_manager.gd"
 LevelManager="*res://scenes/autoloads/level_manager.tscn"
 DiscordSDKLoader="*res://addons/discord-sdk-gd/nodes/discord_autoload.gd"
+MusicManager="*res://scenes/autoloads/music_manager.tscn"
 
 [display]
 

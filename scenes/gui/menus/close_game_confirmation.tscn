@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvb7rkyyyllkc"]
 
-[ext_resource type="Script" path="res://scripts/close_game_confirmation.gd" id="1_7dm65"]
+[ext_resource type="Script" path="res://scripts/menus/close_game_confirmation.gd" id="1_7dm65"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2juxv"]
 bg_color = Color(0, 0, 0, 0.482353)

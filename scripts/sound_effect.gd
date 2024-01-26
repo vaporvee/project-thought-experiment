@@ -1,5 +1,5 @@
 extends AudioStreamPlayer
-class_name  SoundEffect
+class_name SoundEffect
 
 @export var audio_library: Array[SoundeffectResource]
 @export_range(0,2) var pitch_variation: float
