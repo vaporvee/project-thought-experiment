@@ -10,6 +10,7 @@ func _on_level_switched() -> void:
 	print(get_tree().current_scene.name)
 	match get_tree().current_scene.name:
 		"MainMenu":
+			await  get_tree().create_timer(.4).timeout
 			soundeffect.play_key("main")
 		"LVL1":
 			soundeffect.play_key("lvl1")

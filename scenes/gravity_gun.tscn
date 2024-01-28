@@ -258,6 +258,7 @@ script = ExtResource("8_8bfw8")
 audio_library = Array[ExtResource("10_yctqg")]([SubResource("Resource_h6pb1"), SubResource("Resource_5l2w7"), SubResource("Resource_wyis3")])
 
 [node name="HUD" type="HBoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(584, 0)
 anchors_preset = 3
 anchor_left = 1.0

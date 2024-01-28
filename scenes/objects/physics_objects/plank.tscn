@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=3 uid="uid://0l85runj5xs6"]
+
+[ext_resource type="Texture2D" uid="uid://2vf1arfpjpls" path="res://assets/textures/material/light_planks/light_planks_color.png" id="1_csx1h"]
+[ext_resource type="Texture2D" uid="uid://bo5iehmqthkeu" path="res://assets/textures/material/light_planks/light_planks_ambientocclusion.png" id="2_lkemc"]
+[ext_resource type="Texture2D" uid="uid://cyklcrww6x6ll" path="res://assets/textures/material/light_planks/light_planks_metalness.png" id="3_dm1q2"]
+[ext_resource type="Texture2D" uid="uid://puhr4gxfrfep" path="res://assets/textures/material/light_planks/light_planks_normalgl.png" id="4_3bt2i"]
+[ext_resource type="Texture2D" uid="uid://btaq3y61uc4pm" path="res://assets/textures/material/light_planks/light_planks_roughness.png" id="5_btl8m"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
+rough = true
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_qx6i0"]
+size = Vector3(1, 0.05, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0kjst"]
+albedo_texture = ExtResource("1_csx1h")
+metallic = 1.0
+metallic_texture = ExtResource("3_dm1q2")
+roughness_texture = ExtResource("5_btl8m")
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("4_3bt2i")
+ao_enabled = true
+ao_texture = ExtResource("2_lkemc")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
+size = Vector3(1, 0.05, 6)
+
+[node name="Plank" type="RigidBody3D" groups=["pushables"]]
+collision_priority = 2.0
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_rff84")
+continuous_cd = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_qx6i0")
+surface_material_override/0 = SubResource("StandardMaterial3D_0kjst")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bsmvc")

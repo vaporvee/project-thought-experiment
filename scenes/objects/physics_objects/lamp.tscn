@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://jpjth6qixuym"]
+
+[ext_resource type="ArrayMesh" uid="uid://c3whx2k0x3txk" path="res://assets/models/ceiling_lamp.obj" id="1_v7x4v"]
+[ext_resource type="Material" uid="uid://wi5k6axixuwr" path="res://assets/materials/metal.material" id="2_yfdrc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
+rough = true
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="GDScript" id="GDScript_y1mpp"]
+script/source = "extends RigidBody3D
+
+@onready var mesh: MeshInstance3D = $MeshInstance3D
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	if !freeze:
+		mesh.set_surface_override_material(1,preload(\"res://resources/light_bulb_off.tres\"))
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuagc"]
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
+size = Vector3(1.17546, 0.681323, 1.19681)
+
+[node name="CeilingLamp" type="RigidBody3D" groups=["pushables"]]
+collision_priority = 2.0
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_rff84")
+freeze = true
+continuous_cd = true
+script = SubResource("GDScript_y1mpp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+mesh = ExtResource("1_v7x4v")
+surface_material_override/0 = ExtResource("2_yfdrc")
+surface_material_override/1 = SubResource("StandardMaterial3D_nuagc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00848395, 0.31488, 0.0030334)
+shape = SubResource("BoxShape3D_bsmvc")

@@ -1,20 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://idxtvhvxccgl"]
+[gd_scene load_steps=5 format=3 uid="uid://idxtvhvxccgl"]
 
 [ext_resource type="ArrayMesh" uid="uid://c7i8bpqtest8q" path="res://assets/models/bottle.obj" id="1_pj6wy"]
-[ext_resource type="Shader" path="res://shaders/pbr_glass.gdshader" id="2_nc55p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rff84"]
 rough = true
 bounce = 0.1
 absorbent = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dus7y"]
-render_priority = 0
-shader = ExtResource("2_nc55p")
-shader_parameter/albedo = Color(0.2, 0.0470588, 0, 0.631373)
-shader_parameter/roughness = 0.15
-shader_parameter/normal_strength = 1.0
-shader_parameter/edge_color = Color(0, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_514sr"]
+albedo_color = Color(0.243137, 0.0901961, 0, 0.831373)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bsmvc"]
 size = Vector3(0.15, 0.5, 0.15)
@@ -28,7 +22,7 @@ continuous_cd = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = ExtResource("1_pj6wy")
-surface_material_override/0 = SubResource("ShaderMaterial_dus7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_514sr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168721, 0)

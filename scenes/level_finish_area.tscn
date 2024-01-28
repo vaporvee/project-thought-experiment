@@ -26,10 +26,4 @@ shape = SubResource("BoxShape3D_urlb8")
 mesh = SubResource("QuadMesh_hjut0")
 surface_material_override/0 = SubResource("StandardMaterial3D_iaevn")
 
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.524372)
-billboard = 2
-text = "Nächstes Level"
-font_size = 48
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
